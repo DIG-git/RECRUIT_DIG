@@ -1,0 +1,28 @@
+{% extends 'base1.html' %}
+
+{% block content %}
+<div class="wrapper container-fluid" style="padding-top:100px;">
+    <nav id="sidebar">
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="#"><i class="fas fa-home pr-2"></i>Dashboard</a>
+            </li>
+            <li style="margin-left:3px;">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="far fa-address-book mr-2"></i>Jobs</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="#">Post a Job</a>
+                    </li>
+                    <li>
+                        <a href="#">List Jobs/Applicants</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="content">
+
+    </div>
+
+</div>
+{% endblock content %}

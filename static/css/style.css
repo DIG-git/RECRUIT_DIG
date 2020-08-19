@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Geo&display=swap');
+#banner{
+    background: url("/static/img/job.jpg") fixed;
+    background-position: center;
+    background-size: cover;
+}
+.banner{
+    background: rgb(159,194,183,0.7);
+    min-height: 650px;
+}
+.navbar-expand-lg{
+    padding-top: 10px;
+    text-transform:UPPERCASE;
+}
+.bg_nav{
+    transition:750ms ease;
+    background: transparent;
+}
+.bg1{
+    text-transform:UPPERCASE;
+}
+.bg_nav.scrolled{
+    background: rgb(159,194,183,1);
+    padding-top: 10px;
+    text-transform:UPPERCASE;
+}
+.image {
+  display: block;
+  width:250px;
+  height:250px;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 15px;
+  right: 0;
+  height: 250px;
+  width: 250px;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #A9CCE3;
+}
+.cont:hover .overlay {
+  opacity: 0.9;
+}
+.text {
+  color: #000000;
+  font-size: 18px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 1;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.c1{
+  display: block;
+  position: relative;
+  width: 100%;
+  height: auto;
+  box-shadow: 0 1px 2px 0 rgb(0, 0, 0, 0.05), 0 1px 2px 0 rgb(0, 0, 0, 0.09);
+}
+.overlay1{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: rgb(159,194,183,0.2);
+}
+.c1:hover .overlay1{
+    opacity:1;
+}
+.right{
+    margin-left:240px;
+}
+
