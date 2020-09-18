@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+{% csrf_token %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <style type="text/css">
+
+.login-container{
+     margin: auto;
+     margin-top:60px;
+}
+.login-form-1{
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-1 h3{
+    text-align: center;
+    color: #333;
+}
+.login-form-2{
+    padding: 5%;
+    background: #0062cc;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-2 h3{
+    text-align: center;
+    color: #fff;
+}
+.login-container form{
+    padding: 10%;
+}
+.btnSubmit
+{
+    width: 40%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+}
+.login-form-1 .btnSubmit{
+    font-weight: 600;
+    color: #fff;
+    background-color: #0062cc;
+}
+.login-form-2 .btnSubmit{
+    font-weight: 600;
+    color: #0062cc;
+    background-color: #fff;
+}
+
+.btnsignup{
+    border-radius: 1rem;
+    margin-top:20px;
+    padding: 10px 30px;
+    text-align: center;
+    float: right;
+}
+
+    </style>
+</head>
+<body>
+<div class="container login-container text-center">
+    {% if error %}
+    <div class="row">
+        <div class=" col-md-12 text-center mb-2 alert alert-danger">
+            {{ error }}
+        </div>
+    </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-6 login-form-1">
+            <h3>Employee Login</h3>
+            <hr color="white">
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" class="form-control" name="username" required placeholder="Your Username *"
+                           value=""/>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" required placeholder="Your Password *"
+                           value=""/>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btnSubmit" value="Login"/>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="col-md-6 login-form-2">
+            <h3>Company Login</h3>
+            <hr color="white">
+            <form method="POST" action="{% url 'login_company' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" class="form-control" name="cname" required placeholder="Company Name *"
+                           value=""/>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" required placeholder="Password *"
+                           value=""/>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btnSubmit" value="Login"/>
+                </div>
+            </form>
+        </div>
+    </div>
+    <a href="{% url 'register' %}" class="btn btn-info btnsignup">SignUp</a>
+</div>
+
+</body>
+</html>

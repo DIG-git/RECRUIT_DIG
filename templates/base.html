@@ -43,18 +43,18 @@
             <button class="btn btn-sm btn-outline-secondary p-2" type="submit"><i class="fas fa-search m-1"></i>
             </button>
         </form>
-
-        <div class="dropdown">
-            <button class="btn btn-outline-info btn-sm dropdown-toggle mr-1 ml-5" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                Signup
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color:#A9CCE3;">
-                <a class="dropdown-item text-info" href="#"><i class="far fa-user mr-2"></i>Job Seekers</a>
-                <a class="dropdown-item text-info" href="#"><i class="fas fa-laptop-house mr-2"></i>Company</a>
-            </div>
-        </div>
-        <button type="button" class="btn btn-outline-primary btn-sm ">Login</button>
+        {% if user.is_authenticated %}
+           {% if user.is_employee %}
+                <p class="mr-2 my-auto"><small style="text-transform:lowercase;">logged in as <strong class="text-success" style="text-transform:uppercase;">{{ user.username }}</strong></small></p>
+                <button type="button" class="btn btn-outline-primary btn-sm "><a href="{% url 'logout' %}">Logout</a></button>
+            {% else %}
+                <p class="mr-2 my-auto"><small style="text-transform:lowercase;">logged in as <strong class="text-info" style="text-transform:uppercase;">{{ user.username }}</strong></small></p>
+                <button type="button" class="btn btn-outline-primary btn-sm "><a href="{% url 'logout' %}">Logout</a></button>
+            {% endif %}
+        {% else %}
+            <button type="button" class="btn btn-outline-info btn-sm mr-1 ml-5 "><a href="{% url 'register' %}">Signup</a></button>
+            <button type="button" class="btn btn-outline-primary btn-sm "><a href="{% url 'login' %}">Login</a></button>
+        {% endif %}
     </div>
 </nav>
 
