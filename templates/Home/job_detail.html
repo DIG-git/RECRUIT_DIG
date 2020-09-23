@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job description</title>
+</head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+<style type="text/css">
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+.headpart{
+    background: #3494E6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3494E6, #05377f);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3494E6, #05377f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+</style>
+<body>
+<div class="text-white headpart">
+    <div class="p-5">
+        <h2><span style="background-color:#05377f; margin-top:100px; padding-left:20px; padding-right:20px; display:inline-block;">{{job_requirements.job_id.comp_name}}</span></h2>
+        <p class="lead"><small><span style="background-color:#9fc2b7; padding:4px; padding-left:10px; padding-right:10px;">Apply Before: {{job_requirements.todate}}</span></small></p>
+    </div>
+</div>
+
+<div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-8 col-md-8">
+                <div><span class="text-primary" style="display:inline-block;"><STRONG>{{job_requirements.post}}</STRONG></span></div>
+                <hr class="mt-2">
+                <div><span class="text-muted" style="float:left;"><small>Job posted on {{job_requirements.fromdate}}</small></span></div>
+                <div><span class="text-muted" style="display:inline; float:right;"><small>Apply before {{job_requirements.todate}}</small></span></div>
+                <div><p class="bg-light p-2" style="margin-top:50px;"><strong>DETAILED JOB DESCRIPTION/REQUIREMENTS:</strong></p></div>
+                <hr class="mt-2">
+                <p class="text-center text-info"><strong>Job Description</strong></p>
+                <p><strong>Position Title: </strong><span> {{job_requirements.post}}</span></p>
+                <p><strong>Location: </strong><span>{{job_requirements.address}}</span></p>
+                <p><strong>Salary: </strong><span> {{job_requirements.salary}}</span></p>
+                <p><strong>Experience: </strong><span>{{job_requirements.experience}}years</span></p>
+                <a href="{{job_requirements.description.url}}" class="btn btn-primary" style="float:left;">Click to view more</a>
+                <a
+                        {% if user.is_employee %}
+                            href="{% url 'apply' job_requirements.job_id.id %}"
+                        {% else %}
+                            href="{% url 'register' %}"
+                        {% endif %}
+                        class="btn btn-info" style="float:right; margin-top:120px; margin-bottom:20px;">Click Here To Apply</a>
+            </div>
+            <div class="col-lg-4 col-md-4 mt-2">
+                <strong><span class="text-info">Job Overview</span></strong>
+              <div class="border mt-2">
+                    <table class="table table-striped">
+                <tbody>
+                    <tr>
+                      <th scope="row">Category</th>
+                      <td>{{job_requirements.job_id.job_category}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Openings</th>
+                      <td>{{job_requirements.openings}}</td>
+                    </tr>
+                     <tr>
+                      <th scope="row">Working Hours</th>
+                      <td>{{job_requirements.hours}}</td>
+                    </tr>
+                     <tr>
+                      <th scope="row">Experience</th>
+                      <td>{{job_requirements.experience}}</td>
+                    </tr>
+                     <tr>
+                      <th scope="row">City</th>
+                      <td>{{job_requirements.address}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Gender</th>
+                      <td>{{job_requirements.gender}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Posted Date</th>
+                      <td>{{job_requirements.fromdate}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Apply Before</th>
+                      <td>{{job_requirements.todate}}</td>
+                    </tr>
+                </tbody>
+                </table>
+              </div>
+            </div>
+        </div>
+</div>
+</body>
+</html>
+{% endblock content %}

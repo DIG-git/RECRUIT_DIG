@@ -34,8 +34,15 @@
                 <a class="nav-link" href="/job_category">Job Category</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/dashboard">About</a>
+                <a class="nav-link" href="#">About</a>
             </li>
+            {% if user.is_authenticated %}
+                {% if user.is_company %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
+                {% endif %}
+            {% endif %}
         </ul>
         <form class="form-inline my-2 my-lg-0 mr-5">
             <input class="form-control mr-sm-1" style="border-radius: 20px 0px 0px 20px;" type="search"
