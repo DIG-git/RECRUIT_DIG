@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Home',
     'authentication',
     'Apply',
+    'Dashboard',
 ]
 
 MIDDLEWARE = [

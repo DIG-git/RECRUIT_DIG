@@ -40,7 +40,7 @@
             {% if user.is_authenticated %}
                 {% if user.is_company %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                        <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
                     </li>
                 {% endif %}
             {% endif %}

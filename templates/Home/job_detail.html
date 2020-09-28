@@ -23,7 +23,7 @@ body{
 <div class="text-white headpart">
     <div class="p-5">
         <h2><span style="background-color:#05377f; margin-top:100px; padding-left:20px; padding-right:20px; display:inline-block;">{{job_requirements.job_id.comp_name}}</span></h2>
-        <p class="lead"><small><span style="background-color:#9fc2b7; padding:4px; padding-left:10px; padding-right:10px;">Apply Before: {{job_requirements.todate}}</span></small></p>
+        <p class="lead"><small><span style="background-color:#9fc2b7; padding:4px; padding-left:10px; padding-right:10px;">Apply Before: {{job_requirements.todate|date:'d M, Y'}}</span></small></p>
     </div>
 </div>
 
@@ -32,8 +32,8 @@ body{
             <div class="col-lg-8 col-md-8">
                 <div><span class="text-primary" style="display:inline-block;"><STRONG>{{job_requirements.post}}</STRONG></span></div>
                 <hr class="mt-2">
-                <div><span class="text-muted" style="float:left;"><small>Job posted on {{job_requirements.fromdate}}</small></span></div>
-                <div><span class="text-muted" style="display:inline; float:right;"><small>Apply before {{job_requirements.todate}}</small></span></div>
+                <div><span class="text-muted" style="float:left;"><small>Job posted on {{job_requirements.fromdate|date:'d M, Y'}}</small></span></div>
+                <div><span class="text-muted" style="display:inline; float:right;"><small>Apply before {{job_requirements.todate|date:'d M, Y'}}</small></span></div>
                 <div><p class="bg-light p-2" style="margin-top:50px;"><strong>DETAILED JOB DESCRIPTION/REQUIREMENTS:</strong></p></div>
                 <hr class="mt-2">
                 <p class="text-center text-info"><strong>Job Description</strong></p>
@@ -81,11 +81,11 @@ body{
                     </tr>
                     <tr>
                       <th scope="row">Posted Date</th>
-                      <td>{{job_requirements.fromdate}}</td>
+                      <td>{{job_requirements.fromdate|date:'d M, Y'}}</td>
                     </tr>
                     <tr>
                       <th scope="row">Apply Before</th>
-                      <td>{{job_requirements.todate}}</td>
+                      <td>{{job_requirements.todate|date:'d M, Y'}}</td>
                     </tr>
                 </tbody>
                 </table>
