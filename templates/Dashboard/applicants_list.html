@@ -1,0 +1,60 @@
+{% extends 'base1.html' %}
+
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Applicants List</title>
+
+    <style type="text/css">
+        table {
+            counter-reset: section;
+        }
+
+        .count:before {
+            counter-increment: section;
+            content: counter(section);
+        }
+    </style>
+
+</head>
+<body class="main container-fluid">
+<table class="table table-sm table-hover">
+    <thead>
+    <tr>
+        <th scope="col">S. No.</th>
+        <th scope="col">Name</th>
+        <th scope="col">Contact</th>
+        <th scope="col">Email</th>
+        <th scope="col">Address</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Date of Birth</th>
+        <th scope="col">Resume</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for info in applicants_list %}
+    <tr>
+        <td class="count"></td>
+        <td> {{ info.fname }} {{ info.mname }} {{ info.lname }}</td>
+        <td>{{ info.contact }}</td>
+        <td>{{ info.email }}</td>
+        <td>{{ info.address }}</td>
+        <td>{{ info.gender }}</td>
+        <td>{{ info.dob|date:'d M, Y' }}</td>
+        <td><a href="{{ info.resume.url }}" class="btn btn-primary btn-sm right"> View Resume</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+</body>
+{% for resume in resume_list %}
+    {{resume.cosine_similarity}}
+    {{resume.employee_id.fname}}
+    <br>
+{% endfor %}
+</html>
+
+{% endblock content %}

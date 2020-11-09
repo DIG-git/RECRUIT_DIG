@@ -35,16 +35,32 @@
                 <a class="nav-link" href="/job_category">Job Category</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/dashboard">About</a>
+                <a class="nav-link" href="#">About</a>
             </li>
+            {% if user.is_authenticated %}
+                {% if user.is_company %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                    </li>
+                {% endif %}
+            {% endif %}
         </ul>
         <form class="form-inline my-2 my-lg-0 mr-5">
             <input class="form-control mr-sm-1" style="border-radius: 20px 0px 0px 20px;" type="search" placeholder="Search by Job Title" aria-label="Search">
             <button class="btn btn-sm btn-outline-secondary p-2" type="submit"><i class="fas fa-search m-1"></i></button>
         </form>
-
-        <button type="button" class="btn btn-outline-primary btn-sm mr-1 ml-5" >Login</button>
-        <button type="button" class="btn btn-outline-info btn-sm">Signup</button>
+        {% if user.is_authenticated %}
+           {% if user.is_employee %}
+                <p class="mr-2 my-auto"><small style="text-transform:lowercase;">logged in as <strong class="text-success" style="text-transform:uppercase;">{{ user.username }}</strong></small></p>
+                <button type="button" class="btn btn-outline-primary btn-sm "><a href="{% url 'logout' %}">Logout</a></button>
+            {% else %}
+                <p class="mr-2 my-auto"><small style="text-transform:lowercase;">logged in as <strong class="text-info" style="text-transform:uppercase;">{{ user.username }}</strong></small></p>
+                <button type="button" class="btn btn-outline-primary btn-sm "><a href="{% url 'logout' %}">Logout</a></button>
+            {% endif %}
+        {% else %}
+            <button type="button" class="btn btn-outline-info btn-sm mr-1 ml-5 "><a href="{% url 'register' %}">Signup</a></button>
+            <button type="button" class="btn btn-outline-primary btn-sm "><a href="{% url 'login' %}">Login</a></button>
+        {% endif %}
     </div>
 </nav>
 <div class="container-fluid">

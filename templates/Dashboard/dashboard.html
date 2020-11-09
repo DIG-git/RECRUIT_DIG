@@ -1,14 +1,28 @@
 {% extends 'base1.html' %}
 
 {% block content %}
-<div class="wrapper container-fluid" style="padding-top:100px;">
-    <nav id="sidebar">
+
+<style type="text/css">
+        table {
+            counter-reset: section;
+        }
+
+        .count:before {
+            counter-increment: section;
+            content: counter(section);
+        }
+
+</style>
+
+<div class="container-fluid" style="padding-top:100px;">
+    <nav id="sidebar" style="float:left;">
         <ul class="list-unstyled components">
             <li class="active">
                 <a href="#"><i class="fas fa-home pr-2"></i>Dashboard</a>
             </li>
             <li style="margin-left:3px;">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="far fa-address-book mr-2"></i>Jobs</a>
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
+                        class="far fa-address-book mr-2"></i>Jobs</a>
                 <ul class="collapse list-unstyled" id="homeSubmenu">
                     <li>
                         <a href="#">Post a Job</a>
@@ -20,9 +34,75 @@
             </li>
         </ul>
     </nav>
-    <div id="content">
+    <div id="content" style="float:right; width:78%">
+        <a href="{% url 'add_jobs' %}" class="btn btn-primary" style="margin-bottom:10px;">Create a new job</a>
+        <div class="row">
+            <div class="col-md">
+                <h4>Current Jobs</h4>
+                <div class="card card-body">
+                    <table class="table table-sm table-hover">
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Designation</th>
+                            <th>Job Category</th>
+                            <th>Applicants</th>
+                            <th>Deadline Status</th>
+                            <th>View Applicants</th>
+                            <th>Delete Job</th>
+                        </tr>
 
+                        {% for i in job_list %}
+                        {% for job in i.jobrequirements_set.all %}
+                        {% if job.active %}
+                        <tr>
+                            <td class="count"></td>
+                            <td>{{job.post}}</td>
+                            <td>{{job.job_id.job_category}}</td>
+                            <td>{{i.employeeapplicants_set.all.count}}</td> <!--find no of applicants-->
+                            <td>{{job.todate|date:'d M, Y'}}</td> <!-- status find out -->
+                            <td><a class="btn btn-sm btn-info" href="{% url 'applicants' i.id %}">View</a></td>
+                            <td><a class="btn btn-sm btn-danger" href="#">Delete</a></td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md">
+                <h4>Expired Jobs</h4>
+                <div class="card card-body">
+                    <table class="table table-sm table-hover">
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Designation</th>
+                            <th>Job Category</th>
+                            <th>Applicants</th>
+                            <th>Deadline Status</th>
+                            <th>View Applicants</th>
+                            <th>Delete Job</th>
+                        </tr>
+                        {% for i in job_list %}
+                        {% for job in i.jobrequirements_set.all %}
+                        {% if not job.active %}
+                        <tr>
+                            <td class="count"></td>
+                            <td>{{job.post}}</td>
+                            <td>{{job.job_id.job_category}}</td>
+                            <td>{{i.employeeapplicants_set.all.count}}</td> <!--find no of applicants-->
+                            <td>{{job.todate|date:'d M, Y'}}</td> <!-- status find out -->
+                            <td><a class="btn btn-sm btn-info" href="{% url 'applicants' i.id %}">View</a></td>
+                            <td><a class="btn btn-sm btn-danger" href="#">Delete</a></td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-
 </div>
 {% endblock content %}

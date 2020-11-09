@@ -19,10 +19,12 @@
                 </a>
             </div>
             <div class="col-md-4 mt-3 cont">
-                <img src="/static/img/img2.png" class="rounded-circle mb-2 image" alt="Cinque Terre">
-                <div class="overlay rounded-circle mb-2">
-                    <div class="text">Job Category</div>
-                </div>
+                <a href="/job_category">
+                    <img src="/static/img/img2.png" class="rounded-circle mb-2 image" alt="Cinque Terre">
+                        <div class="overlay rounded-circle mb-2">
+                            <div class="text">Job Category</div>
+                        </div>
+                </a>
             </div>
             <div class="col-md-4 mt-3 cont">
                 <img src="/static/img/img3.jpg" class="rounded-circle mb-2 image" alt="Cinque Terre">
@@ -36,44 +38,68 @@
 
 <section>
     <h4 class="mt-5 ml-3 mr-3 p-2 mb-3" style="background:#A9CCE3; color:#2F4F4F;">RECENT JOBS</h4>
+    <div class="row container-fluid">
+        {% for job in jobs %}
+            <div class="col-sm-4 mt-3">
+                <div class="card c1">
+                    <div class="overlay1"></div>
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: rgb(2,96,170);">
+                            {{job.post}}</h5>
+                        <h6 class="card-text"style="color: rgb(85, 85, 85);">
+                            {{job.job_id.comp_name}}</h6>
+                        <p><i class="fas fa-map-marker-alt mr-1"></i>{{job.address}}<i class="far fa-calendar-alt ml-3 mr-1"></i>{{job.todate|date:'d M, Y'}}</p>
+                        <a href="{% url 'job_detail' job.job_id.id %}" class="btn btn-primary btn-sm right" style="position:relative;">View more</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <!--
     <div class="row container-fluid mb-3">
         <div class="col-sm-4">
             <div class="card c1">
+
+                <div class="overlay1"></div>
                 <div class="card-body">
                     <h5 class="card-title" style="color: rgb(2,96,170);">
                         National Programme Officer - TVET</h5>
                     <h6 class="card-text"style="color: rgb(85, 85, 85);">
                         Embassy of Switzerland in Nepal</h6>
                     <p><i class="fas fa-map-marker-alt mr-1"></i>Location<i class="far fa-calendar-alt ml-3 mr-1"></i>Deadline</p>
-                    <a href="#" class="btn btn-primary btn-sm right">View more</a>
+                    <a href="/job_detail" class="btn btn-primary btn-sm right" style="position:relative;">View more</a>
                 </div>
-                <div class="overlay1"></div>
+
             </div>
         </div>
         <div class="col-sm-4">
             <div class="card c1">
+
+                <div class="overlay1"></div>
                 <div class="card-body">
                     <h5 class="card-title" style="color: rgb(2,96,170);">
                         National Programme Officer - TVET</h5>
                     <h6 class="card-text"style="color: rgb(85, 85, 85);">
                         Embassy of Switzerland in Nepal</h6>
                     <p><i class="fas fa-map-marker-alt mr-1"></i>Location<i class="far fa-calendar-alt ml-3 mr-1"></i>Deadline</p>
-                    <a href="#" class="btn btn-primary btn-sm right">View more</a>
+                    <a href="/job_detail" class="btn btn-primary btn-sm right" style="position:relative;">View more</a>
                 </div>
-                <div class="overlay1"></div>
+
             </div>
         </div>
         <div class="col-sm-4">
             <div class="card c1">
+
+                <div class="overlay1"></div>
                 <div class="card-body">
                     <h5 class="card-title" style="color: rgb(2,96,170);">
                         National Programme Officer - TVET</h5>
                     <h6 class="card-text"style="color: rgb(85, 85, 85);">
                         Embassy of Switzerland in Nepal</h6>
                     <p><i class="fas fa-map-marker-alt mr-1"></i>Location<i class="far fa-calendar-alt ml-3 mr-1"></i>Deadline</p>
-                    <a href="#" class="btn btn-primary btn-sm right">View more</a>
+                    <a href="/job_detail" class="btn btn-primary btn-sm right" style="position:relative;">View more</a>
                 </div>
-                <div class="overlay1"></div>
+
             </div>
         </div>
     </div>
@@ -158,11 +184,11 @@
                 <div class="overlay1"></div>
             </div>
         </div>
-    </div>
+    </div>-->
 </section>
 
 <footer>
-        <p class="p-2" style="font-size:28px; font-family: 'Geo', sans-serif;width: 100%;background-color: #9fc2b7;color: #00000;text-align: center;">RECRUIT</p>
+        <p class="p-2 mt-5" style="font-size:28px; font-family: 'Geo', sans-serif;width: 100%;background-color: #9fc2b7;color: #00000;text-align: center; margin-top:10px;">RECRUIT</p>
 </footer>
 
 {% endblock content %}

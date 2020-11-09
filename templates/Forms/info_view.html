@@ -1,0 +1,33 @@
+{% extends 'base1.html' %}
+
+{% block content %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Info</title>
+</head>
+
+<body class="main-container-fluid">
+
+<h1>Infor</h1>
+{% for app in apply %}
+    <h4> {{ app.id }} </h4>
+    <h4> {{ app.fname }} </h4>
+    <h4> {{ app.mname }} </h4>
+    <h4> {{ app.lname }} </h4>
+    <h4> {{ app.address }} </h4>
+    <h4> {{ app.contact }} </h4>
+    <h4> {{ app.gender }} </h4>
+    <h4> {{ app.email }} </h4>
+    <h4> {{ app.dob }} </h4>
+    <a href="{{ app.resume.url }}"> See Resume</a>
+    <br>
+{% endfor %}
+
+</body>
+
+</html>
+
+{% endblock %}
