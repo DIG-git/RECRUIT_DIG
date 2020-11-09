@@ -51,7 +51,9 @@
 
 </body>
 {% for resume in resume_list %}
-    {{resume}}
+    {{resume.cosine_similarity}}
+    {{resume.employee_id.fname}}
+    <br>
 {% endfor %}
 </html>
 

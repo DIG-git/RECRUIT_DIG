@@ -1,6 +1,4 @@
 from nltk.corpus import stopwords
-import pandas as pd
-import nltk
 import string
 from nltk.tokenize import wordpunct_tokenize as tokenize
 from sklearn.feature_extraction.text import TfidfVectorizer

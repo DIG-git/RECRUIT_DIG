@@ -1,5 +1,6 @@
 from django.db import models
 from authentication.models import User
+from django.utils import timezone
 
 
 class Job(models.Model):
@@ -44,3 +45,18 @@ class JobRequirements(models.Model):
     fromdate = models.DateTimeField()
     todate = models.DateTimeField()
     description = models.FileField(upload_to="description/")
+
+    @property
+    def active(self):
+        if self.todate > timezone.now():
+            return True
+        else:
+            return False
+
+
+class Similarity(models.Model):
+    job_id = models.ForeignKey(Job, on_delete=models.CASCADE, default=None)
+    employee_id = models.ForeignKey(EmployeeApplicants, on_delete=models.CASCADE, default=None)
+    cosine_similarity = models.FloatField(blank=True, null=True)
+
+
