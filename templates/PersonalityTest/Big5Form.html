@@ -1,0 +1,76 @@
+{% extends 'base1.html' %}
+
+{% block content %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Personality test</title>
+
+    <style type="text/css">
+        table {
+            counter-reset: section;
+        }
+
+        .count:before {
+            counter-increment: section;
+            content: counter(section);
+        }
+
+    </style>
+
+</head>
+
+<body class="main container-fluid">
+
+<div class="container">
+
+    <form class="submit" method="POST" action="{% url 'personality_score' %}">
+        {% csrf_token %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">S. No.</th>
+                <th scope="col">Personality Test Questions</th>
+                <th scope="col">--</th>
+                <th scope="col">-</th>
+                <th scope="col">+/-</th>
+                <th scope="col">+</th>
+                <th scope="col">++</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for question in questions %}
+            <tr>
+                <td class="count"></td>
+                <th scope="row">{{ question }}</th>
+                <td>
+                    <input type="radio" name="{{question}}" value="1" class="value1">
+                </td>
+                <td>
+                    <input type="radio" name="{{question}}" value="2" class="value2">
+                </td>
+                <td>
+                    <input type="radio" name="{{question}}" value="3" class="value3">
+                </td>
+                <td>
+                    <input type="radio" name="{{question}}" value="4" class="value4">
+                </td>
+                <td>
+                    <input type="radio" name="{{question}}" value="5" class="value5">
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+        <button type="submit" style="float:right; margin-top:20px; margin-right:70px; margin-bottom:20px;" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+
+</body>
+
+</html>
+{% endblock content %}
