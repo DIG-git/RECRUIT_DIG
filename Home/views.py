@@ -19,8 +19,12 @@ def category(request):
 
 def personality_test(request):
     current_user = request.user
-    if current_user.is_authenticated:
+    try:
         Big5resultlist = Big5result.objects.get(user_id=current_user)
+    except Big5result.DoesNotExist:
+        Big5resultlist = None
+
+    if current_user.is_authenticated:
         questions_key = get_ques()
         if not Big5resultlist:
             return render(request, 'PersonalityTest/Big5Form.html', {"questions": questions_key})
@@ -33,15 +37,18 @@ def personality_test(request):
 def personality_score(request):
     answers = {}
 
+    current_user = request.user
+
+    try:
+        Big5resultlist = Big5result.objects.get(user_id=current_user)
+    except Big5result.DoesNotExist:
+        Big5resultlist = None
+
     for ques in get_ques():
         chk = request.POST[ques]
         answers[ques] = int(chk)
 
     print(answers)
-
-    current_user = request.user
-
-    Big5resultlist = Big5result.objects.get(user_id=current_user)
 
     if not Big5resultlist:
         big5 = Big5()

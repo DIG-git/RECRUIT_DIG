@@ -100,4 +100,9 @@ class Big5():
         for key, score in score_dict.items():
             score_dict[key] = score / 10
 
-        return (score_dict)
+        perc_dict = {}
+        for key, score in score_dict.items():
+            perc = (score / 5) * 100
+            perc_dict[key] = round(perc)
+
+        return (perc_dict)

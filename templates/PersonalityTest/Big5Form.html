@@ -26,6 +26,12 @@
 
 <div class="container">
 
+    {% if error %}
+    <div class="text-center mb-3 alert alert-danger">
+        {{ error }}
+    </div>
+    {% endif %}
+
     <form class="submit" method="POST" action="{% url 'personality_score' %}">
         {% csrf_token %}
         <table class="table table-striped">
@@ -65,7 +71,7 @@
             </tbody>
 
         </table>
-        <button type="submit" style="float:right; margin-top:20px; margin-right:70px; margin-bottom:20px;" class="btn btn-primary">Submit</button>
+        <button type="submit" style="float:right; margin-top:20px; margin-right:10px; margin-bottom:20px;" class="btn btn-primary">Submit</button>
     </form>
 
 </div>
