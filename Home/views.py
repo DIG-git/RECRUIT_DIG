@@ -18,18 +18,22 @@ def category(request):
 
 
 def personality_test(request):
-    current_user = request.user
-    try:
-        Big5resultlist = Big5result.objects.get(user_id=current_user)
-    except Big5result.DoesNotExist:
-        Big5resultlist = None
 
+    current_user = request.user
     if current_user.is_authenticated:
+
+        try:
+                Big5resultlist = Big5result.objects.get(user_id=current_user)
+        except Big5result.DoesNotExist:
+            Big5resultlist = None
+
         questions_key = get_ques()
+
         if not Big5resultlist:
             return render(request, 'PersonalityTest/Big5Form.html', {"questions": questions_key})
         else:
             return render(request, 'PersonalityTest/Big5Results.html', {'results': Big5resultlist})
+
     else:
         return render(request, 'authentication/login.html', {'error': 'Login to take personality test!!'})
 

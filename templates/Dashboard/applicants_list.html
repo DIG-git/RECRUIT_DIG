@@ -50,10 +50,15 @@
 </table>
 
 </body>
-{% for resume in resume_list %}
-    {{resume.cosine_similarity}}
-    {{resume.employee_id.fname}}
+{% for resume_list,results in zipped_list %}
+    {{resume_list.cosine_similarity}}
+    {{resume_list.employee_id.fname}}
     <br>
+    <h6>openness: {{results.openness}}</h6>
+    <h6>conscientiousness: {{results.conscientiousness}}</h6>
+    <h6>extraversion: {{results.extraversion}}</h6>
+    <h6>agreeableness: {{results.agreeableness}}</h6>
+    <h6>neuroticism: {{results.neuroticism}}</h6>
 {% endfor %}
 </html>
 
