@@ -5,7 +5,7 @@ from .models import Big5result
 
 
 def index(request):
-    jobs = JobRequirements.objects.all()
+    jobs = JobRequirements.objects.order_by('-fromdate')[:9]
     return render(request, 'Home/index.html', {'jobs': jobs})
 
 
@@ -143,4 +143,8 @@ def job_detail(request, pk):
 
 
 def search(request):
-    return render(request, 'Home/job_detail.html')
+    search = request.POST['search']
+
+    job_list = JobRequirements.objects.filter(post__icontains=search)
+
+    return render(request, 'Home/search_result.html',{'jobs':job_list, 'search':search})

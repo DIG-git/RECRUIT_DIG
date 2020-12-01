@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     <link rel="stylesheet" href="{% static 'css/style2.css' %}">
     <link rel="stylesheet" href="{% static 'css/jobs.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 
 </head>
@@ -48,9 +49,10 @@
                 {% endif %}
             {% endif %}
         </ul>
-        <form class="form-inline my-2 my-lg-0 mr-5">
-            <input class="form-control mr-sm-1" style="border-radius: 20px 0px 0px 20px;" type="search" placeholder="Search by Job Title" aria-label="Search">
-            <button class="btn btn-sm btn-outline-secondary p-2" type="submit" action><i class="fas fa-search m-1"></i></button>
+        <form class="form-inline my-2 my-lg-0 mr-5" method="POST" action="{% url 'search' %}">
+            {% csrf_token %}
+            <input class="form-control mr-sm-1" style="border-radius: 20px 0px 0px 20px;" type="search" placeholder="Search by Job Title" aria-label="Search" name="search" required>
+            <button class="btn btn-sm btn-outline-secondary p-2" type="submit"><i class="fas fa-search m-1"></i></button>
         </form>
         {% if user.is_authenticated %}
            {% if user.is_employee %}

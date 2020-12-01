@@ -1,6 +1,3 @@
-import scipy.stats as stats
-
-
 class Big5():
     def __init__(self):
         self.questions_key = {
