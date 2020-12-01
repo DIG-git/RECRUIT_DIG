@@ -18,12 +18,11 @@ def category(request):
 
 
 def personality_test(request):
-
     current_user = request.user
     if current_user.is_authenticated:
 
         try:
-                Big5resultlist = Big5result.objects.get(user_id=current_user)
+            Big5resultlist = Big5result.objects.get(user_id=current_user)
         except Big5result.DoesNotExist:
             Big5resultlist = None
 
@@ -141,3 +140,7 @@ def get_ques():
 def job_detail(request, pk):
     job_requirements = JobRequirements.objects.get(job_id=pk)
     return render(request, 'Home/job_detail.html', {'job_requirements': job_requirements})
+
+
+def search(request):
+    return render(request, 'Home/job_detail.html')
