@@ -59,3 +59,5 @@ def applicants(request, job_id):
 @register.filter
 def get_range(value):
     return range(value)
+
+

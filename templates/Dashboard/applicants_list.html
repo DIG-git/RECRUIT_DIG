@@ -20,15 +20,30 @@
             overflow-x: scroll;
             overflow-y: hidden;
             white-space: nowrap;
-            max-height: 300px;
+            max-height: 340px;
             display: flex;
             }
         .card {
                 min-width: 290px;
-                height: 280px;
+                height: 340px;
                 background-color: rgb(159,194,183,0.1);
                 display: inline-block;
                 margin-right: 8px;
+            }
+         .circle {
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+                border-radius: 50%;
+                font-size: 30px;
+                color: #2F4F4F;;
+                text-align: center;
+                background: #f0b63e;
+                background: -webkit-linear-gradient(to right, #f0b63e,#f6d000, #ffe500);
+                background: linear-gradient(to right, #f0b63e, #f6d000, #ffe500);
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
             }
     }
 
@@ -72,33 +87,34 @@
     <div class="card c1"><a href="{{resume_list.employee_id.resume.url}}">
         <div class="overlay1"></div>
         <div class="card-body">
-            <h6 style="color: rgb(2,96,170); text-align: center; margin-top:10px;">{{resume_list.employee_id.fname}}
+            <div class="circle">{{forloop.counter}}</div>
+            <h6 style="color: rgb(2,96,170); text-align: center; margin-top:10px;"> {{resume_list.employee_id.fname}}
                 {{resume_list.employee_id.mname}} {{resume_list.employee_id.lname}}</h6>
             <br>
             <h6 class="p-1 mt-2 mb-2" style="background:#A9CCE3; color:#2F4F4F;">Personality</h6>
 
             <div class="progress" style="height:25px;">
-                <h6 style="margin-right:66px;">openness: </h6>
+                <h6 style="margin-right:66px;">Openness: </h6>
                 <div class="progress-bar progress-bar-striped" role="progressbar" style="height:20px; width: {{results.openness}}" aria-valuenow="10"
                      aria-valuemin="0" aria-valuemax="100">{{results.openness}}%</div>
             </div>
             <div class="progress" style="height:25px;">
-                <h6 style="margin-right:5px;">conscientiousness: </h6>
+                <h6 style="margin-right:5px;">Conscientiousness: </h6>
                 <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="height:20px; width: {{results.conscientiousness}}" aria-valuenow="10"
                      aria-valuemin="0" aria-valuemax="100">{{results.conscientiousness}}%</div>
             </div>
             <div class="progress" style="height:25px;">
-                <h6 style="margin-right:46px;">extraversion: </h6>
+                <h6 style="margin-right:48px;">Extraversion: </h6>
                 <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="height:20px; width: {{results.extraversion}}" aria-valuenow="10"
                      aria-valuemin="0" aria-valuemax="100">{{results.extraversion}}%</div>
             </div>
             <div class="progress" style="height:25px;">
-                <h6 style="margin-right:32px;">agreeableness: </h6>
+                <h6 style="margin-right:31px;">Agreeableness: </h6>
                 <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="height:20px; width: {{results.agreeableness}}" aria-valuenow="10"
                      aria-valuemin="0" aria-valuemax="100">{{results.agreeableness}}%</div>
             </div>
             <div class="progress" style="height:25px;">
-                <h6 style="margin-right:50px;">neuroticism: </h6>
+                <h6 style="margin-right:48px;">Neuroticism: </h6>
                 <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="height:20px; width: {{results.neuroticism}}" aria-valuenow="10"
                      aria-valuemin="0" aria-valuemax="100">{{results.neuroticism}}%</div>
             </div>
