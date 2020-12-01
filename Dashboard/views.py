@@ -51,11 +51,9 @@ def applicants(request, job_id):
         result = Big5result.objects.get(user_id=user_id)
         personality.append(result)
 
-    employee_range = len(ranking_list)
-
     zipped_list = zip(ranking_list, personality)
 
-    return render(request, 'Dashboard/applicants_list.html', {'applicants_list': applicants_list, 'resume_list': ranking_list, 'results': personality, 'employee_range': employee_range, 'zipped_list': zipped_list})
+    return render(request, 'Dashboard/applicants_list.html', {'applicants_list': applicants_list, 'zipped_list': zipped_list})
 
 
 @register.filter
