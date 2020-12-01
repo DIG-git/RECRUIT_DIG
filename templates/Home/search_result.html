@@ -2,6 +2,10 @@
 
 {% block content %}
 
+<head>
+    <title>Search Result</title>
+</head>
+
 <div class="mt-5 p-2">
 
     <h4 class="mt-5 ml-3 mr-3 p-2 mb-3" style="background:#A9CCE3; color:#2F4F4F;">RECENT JOBS</h4>
@@ -20,7 +24,7 @@
                         <i class="far fa-calendar-alt ml-3 mr-1"></i>{{job.todate|date:'d M, Y'}}
                     </p>
                     <a href="{% url 'job_detail' job.job_id.id %}" class="btn btn-primary btn-sm right"
-                       style="position:relative;">View more</a>
+                       style="float:right;">View more</a>
                 </div>
             </div>
         </div>
