@@ -141,3 +141,12 @@ def get_ques():
 def job_detail(request, pk):
     job_requirements = JobRequirements.objects.get(job_id=pk)
     return render(request, 'Home/job_detail.html', {'job_requirements': job_requirements})
+
+
+def search(request):
+    search = request.POST['search']
+
+    job_list = JobRequirements.objects.filter(post__icontains=search)
+
+    return render(request, 'Home/search_result.html', {'jobs': job_list, 'search':search})
+

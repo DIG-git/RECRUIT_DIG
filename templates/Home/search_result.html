@@ -1,0 +1,33 @@
+{% extends 'base1.html' %}
+
+{% block content %}
+
+<head>
+    <title>Search Result</title>
+</head>
+
+<div class="mt-5 p-2">
+    <div class="row container-fluid" style="margin-top: 10px;">
+        {% for job in jobs %}
+        <div class="col-sm-4 mt-3">
+            <div class="card c1" style="height:175px">
+                <div class="overlay1"></div>
+                <div class="card-body">
+                    <h5 class="card-title" style="color: rgb(2,96,170);">
+                        {{job.post}}</h5>
+                    <h6 class="card-text" style="color: rgb(85, 85, 85);">
+                        {{job.job_id.comp_name}}</h6>
+                    <p>
+                        <i class="fas fa-map-marker-alt mr-1"></i>{{job.address}}
+                        <i class="far fa-calendar-alt ml-3 mr-1"></i>{{job.todate|date:'d M, Y'}}
+                    </p>
+                    <a href="{% url 'job_detail' job.job_id.id %}" class="btn btn-primary btn-sm right"
+                       style="float:right; position:relative;">View more</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}
