@@ -56,8 +56,4 @@ def applicants(request, job_id):
     return render(request, 'Dashboard/applicants_list.html', {'applicants_list': applicants_list, 'zipped_list': zipped_list})
 
 
-@register.filter
-def get_range(value):
-    return range(value)
-
 

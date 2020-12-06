@@ -1,209 +1,142 @@
 {% extends 'base1.html' %}
 
 {% block content %}
+
 <div class="main container-fluid ">
+
     <div class="left col-sm-4" style="float:left; width: 360px;">
         <h6 class="p-2" style="background:#A9CCE3; color:#2F4F4F;">JOB CATEGORIES</h6>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item c1" style="color: rgb(2,96,170);">
-                <div class="p-2">
-                    <h7 class="card-title">
-                        Government
-                    </h7>
-                </div>
-                <div class="overlay1"></div>
+        <ul class="list-group">
+            {% for x in categories %}
+            <li class="list-group-item c1 list-group-item-action" style="color: rgb(2,96,170);">
+                <a href="{{ x.get_absolute_path }}"></a>
+                    <div class="p-2">
+                        <h7 class="card-title">
+                            {{x.name}}
+                        </h7>
+                    </div>
+                    <div class="overlay1"></div>
             </li>
-            <li class="list-group-item c1">
-                <div class="p-2">
-                    <h7 class="card-title" style="color: rgb(2,96,170);">
-                        IT & Telecommunication
-                    </h7>
-                </div>
-                <div class="overlay1"></div>
+            {% endfor %}
+        </ul>
+        <!--<ul class="list-group">
+            <li class="list-group-item c1 list-group-item-action" style="color: rgb(2,96,170);">
+                <a href="{% url 'job_category' id=categories.0 %}">
+                    <div class="p-2">
+                        <h7 class="card-title">
+                            Government
+                        </h7>
+                    </div>
+                    <div class="overlay1"></div>
+            </a>
             </li>
-            <li class="list-group-item c1">
-                <div class="p-2">
-                    <h7 class="card-title" style="color: rgb(2,96,170);">
-                        Hospitality
-                    </h7>
-                </div>
-                <div class="overlay1"></div>
+            <li class="list-group-item c1 list-group-item-action" style="color: rgb(2,96,170);">
+                <a href="{{url}}">
+                    <div class="p-2">
+                        <h7 class="card-title">
+                            IT & Telecommunication
+                        </h7>
+                    </div>
+                    <div class="overlay1"></div>
+                </a>
             </li>
-            <li class="list-group-item c1">
-                <div class="p-2">
-                    <h7 class="card-title" style="color: rgb(2,96,170);">
-                        Administration/Management
-                    </h7>
-                </div>
-                <div class="overlay1"></div>
+            <li class="list-group-item c1 list-group-item-action" style="color: rgb(2,96,170);">
+                <a href="/?category={{categories.2}}">
+                    <div class="p-2">
+                        <h7 class="card-title">
+                            Hospitality
+                        </h7>
+                    </div>
+                    <div class="overlay1"></div>
+                </a>
             </li>
-            <li class="list-group-item c1">
-                <div class="p-2">
-                    <h7 class="card-title" style="color: rgb(2,96,170);">
-                        NGO/INGO
-                    </h7>
-                </div>
-                <div class="overlay1"></div>
+            <li class="list-group-item c1 list-group-item-action" style="color: rgb(2,96,170);">
+                <a href="/?category={{categories.3}}">
+                    <div class="p-2">
+                        <h7 class="card-title">
+                            Administration/Management
+                        </h7>
+                    </div>
+                    <div class="overlay1"></div>
+                </a>
             </li>
-            <li class="list-group-item c1">
-                <div class="p-2">
-                    <h7 class="card-title" style="color: rgb(2,96,170);">
-                        Teaching/Education
-                    </h7>
-                </div>
-                <div class="overlay1"></div>
+            <li class="list-group-item c1 list-group-item-action" style="color: rgb(2,96,170);">
+                <a href="/?category={{categories.4}}">
+                    <div class="p-2">
+                        <h7 class="card-title">
+                            NGO/INGO
+                        </h7>
+                    </div>
+                    <div class="overlay1"></div>
+                </a>
             </li>
-            <li class="list-group-item c1">
-                <div class="p-2">
-                    <h7 class="card-title" style="color: rgb(2,96,170);">
-                        Construction/Engineering
-                    </h7>
-                </div>
-                <div class="overlay1"></div>
+            <li class="list-group-item c1 list-group-item-action" style="color: rgb(2,96,170);">
+                <a href="/?category={{categories.5}}">
+                    <div class="p-2">
+                        <h7 class="card-title">
+                            Teaching/Education
+                        </h7>
+                    </div>
+                    <div class="overlay1"></div>
+                </a>
             </li>
-            <li class="list-group-item c1">
-                <div class="p-2">
-                    <h7 class="card-title" style="color: rgb(2,96,170);">
-                        Architecture/Interior Design
-                    </h7>
-                </div>
-                <div class="overlay1"></div>
+            <li class="list-group-item c1 list-group-item-action" style="color: rgb(2,96,170);">
+                <a href="/?category={{categories.6}}">
+                    <div class="p-2">
+                        <h7 class="card-title">
+                            Construction/Engineering
+                        </h7>
+                    </div>
+                    <div class="overlay1"></div>
+                </a>
             </li>
-            <li class="list-group-item c1">
-                <div class="p-2">
-                    <h7 class="card-title" style="color: rgb(2,96,170);">
-                        Sales/Public Relation
-                    </h7>
-                </div>
-                <div class="overlay1"></div>
+            <li class="list-group-item c1 list-group-item-action" style="color: rgb(2,96,170);">
+                <a href="/?category={{categories.7}}">
+                    <div class="p-2">
+                        <h7 class="card-title">
+                            Architecture/Interior Design
+                        </h7>
+                    </div>
+                    <div class="overlay1"></div>
+                </a>
+            </li>
+            <li class="list-group-item c1 list-group-item-action" style="color: rgb(2,96,170);">
+                <a href="/?category={{categories.8}}">
+                    <div class="p-2">
+                        <h7 class="card-title">
+                            Sales/Public Relation
+                        </h7>
+                    </div>
+                    <div class="overlay1"></div>
+                </a>
             </li>
         </ul>
+    </div> !-->
     </div>
-    <div class="right col-sm-8" style="float:left; width: 825px;">
-        <div class="row mb-1">
-            <div class="col-sm-4">
-                <div class="card overflow-hidden c1" style="width: 16rem; height:10rem;">
-                    <div class="card-body">
-                        <h6 class="card-title" style="color: rgb(2,96,170);">
-                            National Programme Officer - TVET</h6>
-                        <h7 class="card-text" style="color: rgb(85, 85, 85);">
-                            Embassy of Switzerland in Nepal
-                        </h7>
-                        <p><i class="fas fa-map-marker-alt mr-1"></i>Location</p>
-                    </div>
+
+    <div class="right col-sm-8" style="float: right; width:825px;">
+        <!--{% if category %}{{category.name}}{% endif %} !-->
+        <div class="row container-fluid">
+            {% for job in jobs %}
+            <div class="col-sm-3 mt-3">
+                <div class="card c1">
                     <div class="overlay1"></div>
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: rgb(2,96,170);">
+                            {{job.post}}</h5>
+                        <h6 class="card-text" style="color: rgb(85, 85, 85);">
+                            {{job.job_id.comp_name}}</h6>
+                        <p><i class="fas fa-map-marker-alt mr-1"></i>{{job.address}}<i
+                                class="far fa-calendar-alt ml-3 mr-1"></i>{{job.todate|date:'d M, Y'}}</p>
+                        <a href="{% url 'job_detail' job.job_id.id %}" class="btn btn-primary btn-sm right"
+                           style="position:relative; float:right;">View more</a>
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="card c1 overflow-hidden" style="width: 16rem; height:10rem;">
-                    <div class="card-body">
-                        <h6 class="card-title" style="color: rgb(2,96,170);">
-                            National Programme Officer - TVET</h6>
-                        <h7 class="card-text" style="color: rgb(85, 85, 85);">
-                            Embassy of Switzerland in Nepal
-                        </h7>
-                        <p><i class="fas fa-map-marker-alt mr-1"></i>Location</p>
-                    </div>
-                    <div class="overlay1"></div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card c1 overflow-hidden" style="width: 16rem; height:10rem;">
-                    <div class="card-body">
-                        <h6 class="card-title" style="color: rgb(2,96,170);">
-                            National Programme Officer - TVET</h6>
-                        <h7 class="card-text" style="color: rgb(85, 85, 85);">
-                            Embassy of Switzerland in Nepal
-                        </h7>
-                        <p><i class="fas fa-map-marker-alt mr-1"></i>Location</p>
-                    </div>
-                    <div class="overlay1"></div>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-1">
-            <div class="col-sm-4">
-                <div class="card overflow-hidden c1" style="width: 16rem; height:10rem;">
-                    <div class="card-body">
-                        <h6 class="card-title" style="color: rgb(2,96,170);">
-                            National Programme Officer - TVET</h6>
-                        <h7 class="card-text" style="color: rgb(85, 85, 85);">
-                            Embassy of Switzerland in Nepal
-                        </h7>
-                        <p><i class="fas fa-map-marker-alt mr-1"></i>Location</p>
-                    </div>
-                    <div class="overlay1"></div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card c1 overflow-hidden" style="width: 16rem; height:10rem;">
-                    <div class="card-body">
-                        <h6 class="card-title" style="color: rgb(2,96,170);">
-                            National Programme Officer - TVET</h6>
-                        <h7 class="card-text" style="color: rgb(85, 85, 85);">
-                            Embassy of Switzerland in Nepal
-                        </h7>
-                        <p><i class="fas fa-map-marker-alt mr-1"></i>Location</p>
-                    </div>
-                    <div class="overlay1"></div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card c1 overflow-hidden" style="width: 16rem; height:10rem;">
-                    <div class="card-body">
-                        <h6 class="card-title" style="color: rgb(2,96,170);">
-                            National Programme Officer - TVET</h6>
-                        <h7 class="card-text" style="color: rgb(85, 85, 85);">
-                            Embassy of Switzerland in Nepal
-                        </h7>
-                        <p><i class="fas fa-map-marker-alt mr-1"></i>Location</p>
-                    </div>
-                    <div class="overlay1"></div>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-1">
-            <div class="col-sm-4">
-                <div class="card overflow-hidden c1" style="width: 16rem; height:10rem;">
-                    <div class="card-body">
-                        <h6 class="card-title" style="color: rgb(2,96,170);">
-                            National Programme Officer - TVET</h6>
-                        <h7 class="card-text" style="color: rgb(85, 85, 85);">
-                            Embassy of Switzerland in Nepal
-                        </h7>
-                        <p><i class="fas fa-map-marker-alt mr-1"></i>Location</p>
-                    </div>
-                    <div class="overlay1"></div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card c1 overflow-hidden" style="width: 16rem; height:10rem;">
-                    <div class="card-body">
-                        <h6 class="card-title" style="color: rgb(2,96,170);">
-                            National Programme Officer - TVET</h6>
-                        <h7 class="card-text" style="color: rgb(85, 85, 85);">
-                            Embassy of Switzerland in Nepal
-                        </h7>
-                        <p><i class="fas fa-map-marker-alt mr-1"></i>Location</p>
-                    </div>
-                    <div class="overlay1"></div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card c1 overflow-hidden" style="width: 16rem; height:10rem;">
-                    <div class="card-body">
-                        <h6 class="card-title" style="color: rgb(2,96,170);">
-                            National Programme Officer - TVET</h6>
-                        <h7 class="card-text" style="color: rgb(85, 85, 85);">
-                            Embassy of Switzerland in Nepal
-                        </h7>
-                        <p><i class="fas fa-map-marker-alt mr-1"></i>Location</p>
-                    </div>
-                    <div class="overlay1"></div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 
 </div>
+
 {% endblock content %}

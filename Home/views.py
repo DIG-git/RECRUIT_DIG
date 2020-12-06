@@ -1,29 +1,54 @@
-from django.shortcuts import render
-from Apply.models import JobRequirements, EmployeeApplicants
+from django.shortcuts import render, get_object_or_404
+
+from Apply.models import JobRequirements, Job
 from Home.Big5 import Big5
-from .models import Big5result
+from .models import Big5result, Category
+from django.urls import reverse
 
 
 def index(request):
+    categories = Category.objects.first()
+    print(categories)
     jobs = JobRequirements.objects.all()
-    return render(request, 'Home/index.html', {'jobs': jobs})
+    return render(request, 'Home/index.html', {'jobs': jobs, 'categories': categories})
 
 
 def jobs(request):
-    return render(request, 'Jobs/jobs.html')
+    categories = Category.objects.first()
+    return render(request, 'Jobs/jobs.html', {'categories': categories})
 
 
-def category(request):
-    return render(request, 'JobCategory/category.html')
+def job_category(request, category_slug=None):
+    category = None
+    categories = Category.objects.all()
+    jobs = Job.objects.all()
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        print(category)
+        jobs = jobs.filter(job_category=category.slug)
+        print(jobs)
+    return render(request, 'JobCategory/category.html', {'categories': categories,
+                                                         'jobs': jobs})
+
+
+#def category(request, id):
+    #categories = ["G", "IT", "H", "AM", "NI", "T", "Ar", "S"]
+    # categoryID = request.GET.get('category')
+    # print(categoryID)
+    #jobs = Job.objects.filter(job_category=id)
+    #print(id)
+    # print(jobs)
+    # url = reverse('job_category', args=['IT'])
+    # return HttpResponseRedirect(reverse('job_category'))
+    # return render(request, 'JobCategory/category.html', {'categories': categories, 'jobs': jobs, 'url': url})
 
 
 def personality_test(request):
-
     current_user = request.user
     if current_user.is_authenticated:
 
         try:
-                Big5resultlist = Big5result.objects.get(user_id=current_user)
+            Big5resultlist = Big5result.objects.get(user_id=current_user)
         except Big5result.DoesNotExist:
             Big5resultlist = None
 
@@ -149,4 +174,3 @@ def search(request):
     job_list = JobRequirements.objects.filter(post__icontains=search)
 
     return render(request, 'Home/search_result.html', {'jobs': job_list, 'search': search})
-
