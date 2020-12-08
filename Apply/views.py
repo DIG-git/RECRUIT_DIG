@@ -1,5 +1,5 @@
 from django.core.files.storage import FileSystemStorage
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import EmployeeApplicants, JobRequirements, Job
 from Home.models import Big5result
 
@@ -42,13 +42,11 @@ def add_apply(request, job_id):
                                                             resume=resume)
     employee_applicants.save()
 
-    apply_info = EmployeeApplicants.objects.all()
-
-    return render(request, 'Forms/info_view.html', {'apply': apply_info})
+    return redirect('/Dashboard/employee')
 
 
 def add_jobs(request):
-    return render(request, 'Forms/require.html')
+    return render(request, 'Forms/job_form.html')
 
 
 def post_jobs(request):

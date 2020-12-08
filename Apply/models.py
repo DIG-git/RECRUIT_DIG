@@ -23,7 +23,6 @@ class Job(models.Model):
         return reverse('/job_category', kwargs={'id': self.job_category})
 
 
-
 class EmployeeApplicants(models.Model):
     userID = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, default=None)
     jobID = models.ForeignKey(Job, null=True, on_delete=models.CASCADE, default=None)

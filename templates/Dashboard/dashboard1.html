@@ -1,0 +1,93 @@
+{% extends 'base1.html' %}
+{% block content %}
+<style type="text/css">
+        table {
+            counter-reset: section;
+        }
+        .count:before {
+            counter-increment: section;
+            content: counter(section);
+        }
+</style>
+<div class="container-fluid" style="padding-top:100px;">
+    <nav id="sidebar" style="float:left; margin-top: 4px; width:30%">
+         <div style="padding:8px;">
+             <p class="text-center" style="text-transform:uppercase;"><span><strong> {{ info.user.username }}</strong></span></p>
+             <p><small><strong class="text-primary" style="text-transform:uppercase;">Contact : </strong></small>{{ info.Phone }}</p>
+             <p><small><strong class="text-primary" style="text-transform:uppercase;">Email : </strong></small>{{ info.Email }}</p>
+             <p><small><strong class="text-primary" style="text-transform:uppercase;">Address : </strong></small>{{ info.Address }}</p>
+         </div>
+        {% if results %}
+            <div class="card-body">
+            <h6 class="p-1 mb-2" style="background:#A9CCE3; color:#2F4F4F;">Personality</h6>
+            <div class="progress" style="height:25px;">
+                <h6 style="margin-right:66px;">openness: </h6>
+                <div class="progress-bar progress-bar-striped" role="progressbar" style="height:20px; width: {{results.openness}}" aria-valuenow="10"
+                     aria-valuemin="0" aria-valuemax="100">{{results.openness}}%</div>
+            </div>
+            <div class="progress" style="height:25px;">
+                <h6 style="margin-right:5px;">conscientiousness: </h6>
+                <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="height:20px; width: {{results.conscientiousness}}" aria-valuenow="10"
+                     aria-valuemin="0" aria-valuemax="100">{{results.conscientiousness}}%</div>
+            </div>
+            <div class="progress" style="height:25px;">
+                <h6 style="margin-right:46px;">extraversion: </h6>
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="height:20px; width: {{results.extraversion}}" aria-valuenow="10"
+                     aria-valuemin="0" aria-valuemax="100">{{results.extraversion}}%</div>
+            </div>
+            <div class="progress" style="height:25px;">
+                <h6 style="margin-right:32px;">agreeableness: </h6>
+                <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="height:20px; width: {{results.agreeableness}}" aria-valuenow="10"
+                     aria-valuemin="0" aria-valuemax="100">{{results.agreeableness}}%</div>
+            </div>
+            <div class="progress" style="height:25px;">
+                <h6 style="margin-right:50px;">neuroticism: </h6>
+                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="height:20px; width: {{results.neuroticism}}" aria-valuenow="10"
+                     aria-valuemin="0" aria-valuemax="100">{{results.neuroticism}}%</div>
+            </div>
+        </div>
+        {% else %}
+            <a href="{% url 'personality_test' %}" class="btn btn-primary" style="margin:10px;">Take Personality Test</a>
+        {% endif %}
+    </nav>
+</div>
+</div>
+    </nav>
+    <div id="content" style="float:right; width:76%">
+        <div class="row">
+            <div class="col-md">
+                <div class="card card-body">
+                    <table class="table table-sm table-hover">
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Designation</th>
+                            <th>Category</th>
+                            <th>Deadline Status</th>
+                            <th>Requirements</th>
+                            <th>Edit Application</th>
+                            <th>Delete Application</th>
+                        </tr>
+                        {% for i in job_list %}
+                        {% for job in i.jobrequirements_set.all %}
+                        <tr>
+                            <td class="count"></td>
+                            <td>{{job.post}}</td>
+                            <td style="padding-left:30px;">{{job.job_id.job_category}}</td>
+                            <td>{{job.todate|date:'d M, Y'}}</td> <!-- status find out -->
+                            <td style="padding-left:30px;"><a class="btn btn-sm btn-info" href="{{job.description.url}}">View</a></td>
+                            {% if job.active %}
+                                <td style="padding-left:35px;"><a class="btn btn-sm btn-info" href="#">Edit</a></td>
+                            {% else %}
+                                <td><a class="btn btn-sm btn-outline-secondary" href="#">Deadline Expired</a></td>
+                            {% endif %}
+                            <td style="padding-left:35px;"><a class="btn btn-sm btn-danger" href="#">Delete</a></td>
+                        </tr>
+                        {% endfor %}
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -82,6 +82,7 @@
     </tbody>
 </table>
 </body>
+{% if not job.active %}
 <h4 class="mt-5 p-2 mb-3" style="background:#A9CCE3; color:#2F4F4F;">CV RANKINGS</h4>
 <div class="scrolling-wrapper">
     {% for resume_list,results in zipped_list %}
@@ -124,6 +125,7 @@
     </div>
     {% endfor %}
 </div>
+{% endif %}
 </html>
 
 {% endblock content %}

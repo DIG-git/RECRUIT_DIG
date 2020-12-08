@@ -47,6 +47,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
                     </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard1' %}">Dashboard</a>
+                    </li>
                 {% endif %}
             {% endif %}
         </ul>
