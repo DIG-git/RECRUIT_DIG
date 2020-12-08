@@ -9,7 +9,7 @@ from Home.models import Big5result
 from authentication.models import EmployeeInfo
 
 from .training import train
-from .forms import JobForm
+from .forms import JobForm, ApplyForm
 
 
 def dashboard(request):
@@ -22,6 +22,7 @@ def dashboard(request):
 
 def dashboard1(request):
     job_list = []
+    job_requirements = []
     current_user = request.user
     info = EmployeeInfo.objects.get(user=current_user)
 
@@ -33,8 +34,13 @@ def dashboard1(request):
     employee_list = EmployeeApplicants.objects.filter(userID=current_user)
     for employee in employee_list:
         job_list.append(employee.jobID)
-    print(job_list)
-    return render(request, 'Dashboard/dashboard1.html', {'job_list': job_list, 'info': info, 'results': Big5resultlist})
+
+    for job in job_list:
+        job_requirements.append(JobRequirements.objects.get(job_id=job.id))
+
+    zipped_list = zip(job_requirements,employee_list)
+    return render(request, 'Dashboard/dashboard1.html', {'info': info, 'results': Big5resultlist,
+                                                         'zipped_list': zipped_list})
 
 
 def applicants(request, job_id):
@@ -94,3 +100,23 @@ def delete_job(request, job_id):
     job = Job.objects.get(id=job_id)
     job.delete()
     return redirect('/Dashboard/')
+
+
+def update_apply_form(request, applicant_id):
+    apply_detail = EmployeeApplicants.objects.get(id=applicant_id)
+    return render(request, 'Dashboard/update_apply_form.html', {'apply_detail': apply_detail})
+
+
+def update_employee(request, employee_id):
+    employee = EmployeeApplicants.objects.get(id=employee_id)
+    form = ApplyForm(data=request.POST, files=request.FILES, instance=employee)
+
+    if form.is_valid():
+        form.save()
+        return redirect('/Dashboard/Employee')
+
+
+def delete_employee(request, applicant_id):
+    employee = EmployeeApplicants.objects.get(id=applicant_id)
+    employee.delete()
+    return redirect('/Dashboard/Employee')

@@ -83,7 +83,8 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Are you sure you want to delete this job?{{job.post}}</p>
+                                                    <p><strong>Are you sure you want to delete this job?</strong></p>
+                                                    <p>Job for the post: <strong>{{job.post}}</strong></p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -127,7 +128,30 @@
                             <td>{{job.todate|date:'d M, Y'}}</td> <!-- status find out -->
                             <td style="padding-left:25px;"><a class="btn btn-sm btn-info" href="{{ job.description.url }}">View</a></td>
                             <td style="padding-left:30px;"><a class="btn btn-sm btn-primary" href="{% url 'applicants' i.id %}">View</a></td>
-                            <td style="padding-left:15px;"><a class="btn btn-sm btn-danger" href="{% url 'delete_job' i.id %}">Delete</a></td>
+                            <td style="padding-left:15px;">
+                                <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#DeleteModal1{{i.id}}" href="">Delete</a>
+                                <!-- Modal !-->
+                                    <div class="modal" tabindex="-1" role="dialog" id="DeleteModal1{{i.id}}">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Delete</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p><strong>Are you sure you want to delete this job?</strong></p>
+                                                    <p>Job for the post: <strong>{{job.post}}</strong></p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-danger"><a href="{% url 'delete_job' i.id %}">Delete</a></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </td>
                         </tr>
                         {% endif %}
                         {% endfor %}

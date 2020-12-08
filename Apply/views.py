@@ -42,7 +42,7 @@ def add_apply(request, job_id):
                                                             resume=resume)
     employee_applicants.save()
 
-    return redirect('/Dashboard/employee')
+    return redirect('/Dashboard/Employee')
 
 
 def add_jobs(request):
