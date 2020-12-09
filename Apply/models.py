@@ -1,6 +1,7 @@
 from django.db import models
 from authentication.models import User
 from django.utils import timezone
+from django.urls import reverse
 
 
 class Job(models.Model):
@@ -17,6 +18,9 @@ class Job(models.Model):
     userID = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     comp_name = models.CharField(max_length=30, blank=True, null=True)
     job_category = models.CharField(max_length=6, choices=CategoryChoice)
+
+    def get_absolute_url(self):
+        return reverse('/job_category', kwargs={'id': self.job_category})
 
 
 class EmployeeApplicants(models.Model):
@@ -58,5 +62,7 @@ class Similarity(models.Model):
     job_id = models.ForeignKey(Job, on_delete=models.CASCADE, default=None)
     employee_id = models.ForeignKey(EmployeeApplicants, on_delete=models.CASCADE, default=None)
     cosine_similarity = models.FloatField(blank=True, null=True)
+
+
 
 

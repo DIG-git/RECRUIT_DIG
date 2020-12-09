@@ -7,9 +7,8 @@
 </head>
 
 <div class="mt-5 p-2">
-
-    <h4 class="mt-5 ml-3 mr-3 p-2 mb-3" style="background:#A9CCE3; color:#2F4F4F;">RECENT JOBS</h4>
-    <div class="row container-fluid">
+    <h4 class="mt-5 ml-3 mr-3 p-2 mb-3" style="background:#A9CCE3; color:#2F4F4F;">{{ search }}</h4>
+    <div class="row container-fluid" style="margin-top: 10px;">
         {% for job in jobs %}
         <div class="col-sm-4 mt-3">
             <div class="card c1" style="height:175px">
@@ -23,8 +22,8 @@
                         <i class="fas fa-map-marker-alt mr-1"></i>{{job.address}}
                         <i class="far fa-calendar-alt ml-3 mr-1"></i>{{job.todate|date:'d M, Y'}}
                     </p>
-                    <a href="{% url 'job_detail' job.job_id.id %}" class="btn btn-primary btn-sm right"
-                       style="float:right;">View more</a>
+                    <a href="{% url 'Home:job_detail' job.job_id.id %}" class="btn btn-primary btn-sm right"
+                       style="float:right; position:relative;">View more</a>
                 </div>
             </div>
         </div>
