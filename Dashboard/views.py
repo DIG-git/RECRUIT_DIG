@@ -9,7 +9,6 @@ from Home.models import Big5result
 from authentication.models import EmployeeInfo
 
 from .training import train
-
 from .forms import JobForm, ApplyForm
 
 
