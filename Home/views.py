@@ -173,4 +173,3 @@ def search(request):
     job_list = JobRequirements.objects.filter(post__icontains=search)
     return render(request, 'Home/search_result.html', {'jobs': job_list, 'search': search})
 
-

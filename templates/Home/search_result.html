@@ -22,7 +22,7 @@
                         <i class="fas fa-map-marker-alt mr-1"></i>{{job.address}}
                         <i class="far fa-calendar-alt ml-3 mr-1"></i>{{job.todate|date:'d M, Y'}}
                     </p>
-                    <a href="{% url 'job_detail' job.job_id.id %}" class="btn btn-primary btn-sm right"
+                    <a href="{% url 'Home:job_detail' job.job_id.id %}" class="btn btn-primary btn-sm right"
                        style="float:right; position:relative;">View more</a>
                 </div>
             </div>
