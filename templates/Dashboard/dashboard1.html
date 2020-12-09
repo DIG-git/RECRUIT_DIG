@@ -61,50 +61,28 @@
                         <tr>
                             <th>S.No.</th>
                             <th>Designation</th>
-                            <th>Applicant</th>
                             <th>Category</th>
+                            <th>Deadline Status</th>
                             <th>Requirements</th>
-                            <th>Your CV</th>
                             <th>Edit Application</th>
                             <th>Delete Application</th>
                         </tr>
-                        {% for job_list,employee_list in zipped_list %}
+                        {% for i in job_list %}
+                        {% for job in i.jobrequirements_set.all %}
                         <tr>
                             <td class="count"></td>
-                            <td>{{job_list.post}}</td>
-                            <td>{{employee_list.fname}}</td>
-                            <td style="padding-left:30px;">{{job_list.job_id.job_category}}</td>
-                            <td style="padding-left:30px;"><a class="btn btn-sm btn-info" href="{{job_list.description.url}}">View</a></td>
-                            <td style="padding-left:10px;"><a class="btn btn-sm btn-info" href="{{employee_list.resume.url}}">View</a></td>
-                            {% if job_list.active %}
-                                <td style="padding-left:35px;"><a class="btn btn-sm btn-info" href="{% url 'update_apply_form' employee_list.id %}">Edit</a></td>
+                            <td>{{job.post}}</td>
+                            <td style="padding-left:30px;">{{job.job_id.job_category}}</td>
+                            <td>{{job.todate|date:'d M, Y'}}</td> <!-- status find out -->
+                            <td style="padding-left:30px;"><a class="btn btn-sm btn-info" href="{{job.description.url}}">View</a></td>
+                            {% if job.active %}
+                                <td style="padding-left:35px;"><a class="btn btn-sm btn-info" href="#">Edit</a></td>
                             {% else %}
-                                <td style="padding-left:30px;"><a class="btn btn-sm btn-outline-secondary">Expired</a></td>
+                                <td><a class="btn btn-sm btn-outline-secondary" href="#">Deadline Expired</a></td>
                             {% endif %}
-                            <td style="padding-left:35px;">
-                                <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#DeleteModal{{employee_list.id}}" href="">Delete</a>
-                                <!-- Modal !-->
-                                    <div class="modal" tabindex="-1" role="dialog" id="DeleteModal{{employee_list.id}}">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Delete</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p><strong>Are you sure you want to delete this application?</strong></p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-danger"><a href="{% url 'delete_application' employee_list.id %}">Delete</a></button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                            </td>
+                            <td style="padding-left:35px;"><a class="btn btn-sm btn-danger" href="#">Delete</a></td>
                         </tr>
+                        {% endfor %}
                         {% endfor %}
                     </table>
                 </div>

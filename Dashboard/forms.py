@@ -12,3 +12,4 @@ class ApplyForm(forms.ModelForm):
     class Meta:
         model = EmployeeApplicants
         exclude = ['userID', 'jobID']
+

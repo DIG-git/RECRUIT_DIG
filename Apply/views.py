@@ -41,7 +41,6 @@ def add_apply(request, job_id):
                                                             gender=gender, dob=dob,
                                                             resume=resume)
     employee_applicants.save()
-
     return redirect('/Dashboard/Employee')
 
 

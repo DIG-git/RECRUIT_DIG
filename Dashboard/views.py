@@ -9,6 +9,7 @@ from Home.models import Big5result
 from authentication.models import EmployeeInfo
 
 from .training import train
+
 from .forms import JobForm, ApplyForm
 
 
@@ -120,3 +121,4 @@ def delete_employee(request, applicant_id):
     employee = EmployeeApplicants.objects.get(id=applicant_id)
     employee.delete()
     return redirect('/Dashboard/Employee')
+
