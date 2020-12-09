@@ -129,9 +129,9 @@
                             <td style="padding-left:25px;"><a class="btn btn-sm btn-info" href="{{ job.description.url }}">View</a></td>
                             <td style="padding-left:30px;"><a class="btn btn-sm btn-primary" href="{% url 'applicants' i.id %}">View</a></td>
                             <td style="padding-left:15px;">
-                                <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#DeleteModal1{{i.id}}" href="">Delete</a>
+                                <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#Delete{{i.id}}" href="">Delete</a>
                                 <!-- Modal !-->
-                                    <div class="modal" tabindex="-1" role="dialog" id="DeleteModal1{{i.id}}">
+                                    <div class="modal" tabindex="-1" role="dialog" id="Delete{{i.id}}">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
