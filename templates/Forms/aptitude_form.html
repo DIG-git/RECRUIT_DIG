@@ -1,0 +1,73 @@
+{% extends 'base1.html' %}
+
+{% block content %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Aptitude</title>
+</head>
+
+<body class="main container-fluid">
+
+<br>
+<h1 class="p-2 pl-3 pr-3 mb-5" style="font-family:sans-serif; background:#A9CCE3; color:#2F4F4F; display:inline;">
+    Aptitude questions
+</h1>
+<br>
+<h4 style="font-family:sans-serif; background: #3494E6;
+    background: -webkit-linear-gradient(to right,#3494E6,#2F4F4F);
+    background: linear-gradient(to right,#3494E6,#2F4F4F);
+    padding: 3px; margin-top:10px; padding-left:10px;
+    padding-top:10px; padding-bottom:10px;">Insert aptitude questions here</h4>
+<br>
+
+<form class="submit" action="{% url 'aptitude_form' job_id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="ques">Question</label>
+        <input type="text" class="form-control" id="ques" name="ques" required>
+    </div>
+    <div class="form-row">
+        <div class="form-group col 8">
+            <label for="opta">Option A</label>
+            <input type="text" class="form-control" id="opta" name="opta" required>
+        </div>
+        <div class="form-group col 8">
+            <label for="optb">Option B</label>
+            <input type="text" class="form-control" id="optb" name="optb" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col 8">
+            <label for="optc">Option C</label>
+            <input type="text" class="form-control" id="optc" name="optc" required>
+        </div>
+        <div class="form-group col 8">
+            <label for="optd">Option D</label>
+            <input type="text" class="form-control" id="optd" name="optd" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="answer">Correct Answer</label>
+        <select class="custom-select" id="answer" name="answer" required>
+            <option selected disabled value="">Choose Correct Option</option>
+            <option>Option A</option>
+            <option>Option B</option>
+            <option>Option C</option>
+            <option>Option D</option>
+        </select>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Add Question</button>
+    <a href="{% url 'job_detail' job_id %}" class="btn btn-primary btn-danger" style="margin-left:15px;">
+        Finish
+    </a>
+</form>
+
+</body>
+
+</html>
+
+{% endblock %}

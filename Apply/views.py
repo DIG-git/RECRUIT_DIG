@@ -1,6 +1,6 @@
 from django.core.files.storage import FileSystemStorage
-from django.shortcuts import render, redirect
-from .models import EmployeeApplicants, JobRequirements, Job
+from django.shortcuts import render
+from .models import EmployeeApplicants, JobRequirements, Job, Aptitude
 from Home.models import Big5result
 
 
@@ -41,7 +41,14 @@ def add_apply(request, job_id):
                                                             gender=gender, dob=dob,
                                                             resume=resume)
     employee_applicants.save()
-    return redirect('/Dashboard/Employee')
+
+    ques = Aptitude.objects.filter(job_id=job_id)
+
+    if ques.exists():
+        return render(request, 'Forms/aptitude_answerSheet.html', {'questions': ques, 'job_id': job_id})
+    else:
+        jobs = JobRequirements.objects.order_by('-fromdate')[:9]
+        return render(request, 'Home/index.html', {'jobs': jobs})
 
 
 def add_jobs(request):
@@ -73,7 +80,7 @@ def post_jobs(request):
                                                       fromdate=fromdate, todate=todate, description=description)
     job_requirements.save()
 
-    return render(request, 'Home/job_detail.html', {'job_requirements': job_requirements})
+    return render(request, 'Forms/aptitude_form.html', {'job_id':job.id})
 
 
 def get_ques():
@@ -131,3 +138,47 @@ def get_ques():
     ]
 
     return questions_key
+
+
+def aptitude_form(request, job_id):
+    question = request.POST['ques']
+    opta = request.POST['opta']
+    optb = request.POST['optb']
+    optc = request.POST['optc']
+    optd = request.POST['optd']
+    ans = request.POST['answer']
+
+    if ans == 'Option A':
+        answer = opta
+    elif ans == 'Option B':
+        answer = optb
+    elif ans == 'Option C':
+        answer = optc
+    else:
+        answer = optd
+
+    aptitude = Aptitude.objects.create(job_id=job_id, question=question, opta=opta, optb=optb, optc=optc,
+                                       optd=optd, answer=answer)
+
+    aptitude.save()
+
+    return render(request, 'Forms/aptitude_form.html', {'job_id':job_id})
+
+
+def aptitude_result(request, job_id):
+    current_user = request.user
+
+    score = 0
+    questions = Aptitude.objects.values_list('question', flat=True).filter(job_id=job_id)
+    for ques in questions:
+        chk = request.POST[ques]
+        answers = Aptitude.objects.values_list('answer', flat=True).filter(question=ques)
+        if chk == answers[0]:
+            score = score + 1
+
+    employee = EmployeeApplicants.objects.filter(userID=current_user, jobID=job_id).order_by('-id').first()
+    employee.aptitude_score = score
+    employee.save()
+
+    jobs = JobRequirements.objects.order_by('-fromdate')[:9]
+    return render(request, 'Home/index.html', {'jobs': jobs})

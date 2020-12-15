@@ -118,3 +118,5 @@ def login_Company(request):
 def logout(request):
     auth.logout(request)
     return redirect('login')
+
+

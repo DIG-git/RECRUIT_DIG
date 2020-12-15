@@ -35,6 +35,7 @@ class EmployeeApplicants(models.Model):
     gender = models.CharField(max_length=10)
     dob = models.DateTimeField()
     resume = models.FileField(upload_to="resume/")
+    aptitude_score = models.IntegerField(default=0)
 
 
 class JobRequirements(models.Model):
@@ -64,5 +65,13 @@ class Similarity(models.Model):
     cosine_similarity = models.FloatField(blank=True, null=True)
 
 
+class Aptitude(models.Model):
+    job_id = models.IntegerField()
+    question = models.CharField(max_length=500)
+    opta = models.CharField(max_length=500)
+    optb = models.CharField(max_length=500)
+    optc = models.CharField(max_length=500)
+    optd = models.CharField(max_length=500)
+    answer = models.CharField(max_length=500)
 
 

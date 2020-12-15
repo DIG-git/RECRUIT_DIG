@@ -77,6 +77,7 @@
         <td>{{ info.address }}</td>
         <td>{{ info.gender }}</td>
         <td>{{ info.dob|date:'d M, Y' }}</td>
+        <td>{{ info.aptitude_score }}</td>
         <td><a href="{{ info.resume.url }}" class="btn btn-primary btn-sm right"> View Resume</a></td>
     </tr>
     {% endfor %}
@@ -94,6 +95,7 @@
             <h6 style="color: rgb(2,96,170); text-align: center; margin-top:10px;"> {{resume_list.employee_id.fname}}
                 {{resume_list.employee_id.mname}} {{resume_list.employee_id.lname}}</h6>
             <br>
+            <h6>Aptitude Score: {{ resume_list.employee_id.aptitude_score }}</h6>
             <h6 class="p-1 mt-2 mb-2" style="background:#A9CCE3; color:#2F4F4F;">Personality</h6>
 
             <div class="progress" style="height:25px;">

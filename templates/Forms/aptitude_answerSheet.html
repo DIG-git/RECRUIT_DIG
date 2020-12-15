@@ -1,0 +1,62 @@
+{% extends 'base1.html' %}
+
+{% block content %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Aptitude Test</title>
+</head>
+
+<body class="main container-fluid">
+
+<br>
+<h1 class="p-2 pl-3 pr-3 mb-5" style="font-family:sans-serif; background:#A9CCE3; color:#2F4F4F; display:inline;">
+    Aptitude questions
+</h1>
+<br>
+<h4 style="font-family:sans-serif; background: #3494E6; background: -webkit-linear-gradient(to right,#3494E6,#2F4F4F);
+    background: linear-gradient(to right,#3494E6,#2F4F4F); padding: 3px; margin-top:10px; padding-left:10px;
+    padding-top:10px; padding-bottom:10px;">
+    Answer the aptitude questions
+</h4>
+<br>
+
+<form class="submit" action="{% url 'aptitude_result' job_id %}" method="post">
+    {% csrf_token %}
+
+    {% for ques in questions %}
+    <h5>{{ forloop.counter}}. {{ ques.question}} </h5>
+    <h6 style="margin-top:20px;">
+        <div class="form-row">
+            <div class="form-group col 8">
+                <input type="radio" name="{{ ques.question }}" id="opta" value="{{ ques.opta }}" style="margin-left:30px;">
+                <label for="opta">{{ ques.opta }}</label>
+            </div>
+            <div class="form-group col 8">
+                <input type="radio" name="{{ ques.question }}" id="optb" value="{{ ques.optb }}" style="margin-left:30px;">
+                <label for="optb">{{ ques.optb }}</label>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col 8">
+                <input type="radio" name="{{ ques.question }}" id="optc" value="{{ ques.optc }}" style="margin-left:30px;">
+                <label for="optc">{{ ques.optc }}</label>
+            </div>
+            <div class="form-group col 8">
+                <input type="radio" name="{{ ques.question }}" id="optd" value="{{ ques.optd }}" style="margin-left:30px;">
+                <label for="optd">{{ ques.optd }}</label>
+            </div>
+        </div>
+    </h6>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</body>
+
+</html>
+
+{% endblock %}
