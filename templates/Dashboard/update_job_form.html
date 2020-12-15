@@ -1,0 +1,115 @@
+{% extends 'base1.html' %}
+
+{% block content %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Job Requirements</title>
+</head>
+
+<body class="main container-fluid">
+
+<h1 class="p-2 pl-3 pr-3 mb-5" style="font-family:sans-serif; background:#A9CCE3; color:#2F4F4F; display:inline;">Job Requirements</h1>
+<br>
+<h4 style="font-family:sans-serif; background: #3494E6;
+    background: -webkit-linear-gradient(to right,#3494E6,#2F4F4F);
+    background: linear-gradient(to right,#3494E6,#2F4F4F);
+    padding: 3px; margin-top:10px; padding-left:10px;
+    padding-top:10px; padding-bottom:10px;">Enter Job description here</h4>
+<br>
+
+<form class="submit" action="{% url 'update_job' job_detail.job_id.id %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="comp_name">Company Name</label>
+        <input type="text" class="form-control" id="comp_name" name="comp_name" value="{{job_detail.job_id.comp_name}}" readonly>
+    </div>
+    <div class="form-row">
+        <div class="form-group col 8">
+            <label for="post">Designation</label>
+            <input type="text" class="form-control" id="post" name="post" value="{{job_detail.post}}" required>
+        </div>
+        <div class="form-group col 8">
+            <label for="salary">Salary</label>
+            <input type="text" class="form-control" id="salary" name="salary" value="{{job_detail.salary}}">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col 8">
+            <label for="address">Working Station</label>
+            <input type="text" class="form-control" id="address" name="address" value="{{job_detail.address}}">
+        </div>
+        <div class="form-group">
+            <label for="openings">Openings</label>
+            <input type="number" class="form-control" id="openings" min="1" name="openings" value="{{job_detail.openings}}">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col 4">
+            <label for="experience">Experience</label>
+            <input type="number" class="form-control" id="experience" min="0" name="experience" value="{{job_detail.experience}}">
+        </div>
+        <div class="form-group col 4">
+            <label for="working">Working Hours</label>
+            <input type="number" class="form-control" id="working" max="24" min="1" name="hours" value="{{job_detail.hours}}">
+        </div>
+        <div class="form-group col 1">
+            <label for="gender">Gender</label>
+            <select class="custom-select" id="gender" name="gender" required>
+                <option selected value="{{job_detail.gender}}">{{job_detail.gender}}</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Both</option>
+            </select>
+        </div>
+        <div class="form-group col 1">
+            <label for="gender">Job Category</label>
+            <select class="custom-select" id="job_category" name="job_category" required>
+                <option selected value="{{job_detail.job_id.job_category}}">
+                    {% if job_detail.job_id.job_category == 'G' %}Government{% endif %}
+                    {% if job_detail.job_id.job_category == 'IT' %}IT & Telecommunication{% endif %}
+                    {% if job_detail.job_id.job_category == 'H' %}Hospitality{% endif %}
+                    {% if job_detail.job_id.job_category == 'AM' %}Administration/Management{% endif %}
+                    {% if job_detail.job_id.job_category == 'NI' %}NGO/INGO{% endif %}
+                    {% if job_detail.job_id.job_category == 'T' %}Teaching/Education{% endif %}
+                    {% if job_detail.job_id.job_category == 'Ar' %}Architecture/Interior Design{% endif %}
+                    {% if job_detail.job_id.job_category == 'S' %}Sales/Public Relation{% endif %}
+                </option>
+                <option value="G">Government</option>
+                <option value="IT">IT & Telecommunication</option>
+                <option value="H">Hospitality</option>
+                <option value="AM">Administration/Management</option>
+                <option value="NI">NGO/INGO</option>
+                <option value="T">Teaching/Education</option>
+                <option value="Ar">Architecture/Interior Design</option>
+                <option value="S">Sales/Public Relation</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col 4">
+            <label for="fromdate">Vacancy Opens</label>
+            <input type="date" class="form-control" id="fromdate" name="fromdate" value="{{job_detail.fromdate|date:'Y-m-d' }}" required>
+        </div>
+        <div class="form-group col 4">
+            <label for="todate">Vacancy Closes</label>
+            <input type="date" class="form-control" id="todate" name="todate" value="{{job_detail.todate|date:'Y-m-d'}}" required>
+        </div>
+    </div>
+    <div class="form-group s3">
+        <label for="upload">Upload Requirements</label>
+        <div class="uploadbtn">
+            <input type="file" class="form-control-file" id="upload" name="description" accept="application/pdf">
+        </div>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
+</body>
+
+</html>
+
+{% endblock %}

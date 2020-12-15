@@ -52,7 +52,7 @@ def add_apply(request, job_id):
 
 
 def add_jobs(request):
-    return render(request, 'Forms/require.html')
+    return render(request, 'Forms/job_form.html')
 
 
 def post_jobs(request):

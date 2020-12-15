@@ -35,7 +35,7 @@
                 <a class="nav-link" href="/jobs">Jobs</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/job_category">Job Category</a>
+                <a class="nav-link" href="{{categories.get_absolute_url}}">Job Category</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">About</a>
@@ -48,16 +48,22 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
                     </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard1' %}">Dashboard</a>
+                    </li>
                 {% endif %}
             {% endif %}
         </ul>
         <form class="form-inline my-2 my-lg-0 mr-5" method="POST" action="{% url 'search' %}">
             {% csrf_token %}
-            <input class="form-control mr-sm-1" style="border-radius: 20px 0px 0px 20px;" type="search" placeholder="Search by Job Title" aria-label="Search" name="search" required>
-            <button class="btn btn-sm btn-outline-secondary p-2" type="submit"><i class="fas fa-search m-1"></i></button>
+            <input class="form-control mr-sm-1" style="border-radius: 20px 0px 0px 20px;" type="search"
+                   placeholder="Search by Job Title" aria-label="Search" name="search" required>
+            <button class="btn btn-sm btn-outline-secondary p-2" type="submit"><i class="fas fa-search m-1"></i>
+            </button>
         </form>
         {% if user.is_authenticated %}
-           {% if user.is_employee %}
+            {% if user.is_employee %}
                 <p class="mr-2 my-auto"><small style="text-transform:lowercase;">logged in as <strong class="text-success" style="text-transform:uppercase;">{{ user.username }}</strong></small></p>
                 <button type="button" class="btn btn-outline-primary btn-sm "><a href="{% url 'logout' %}">Logout</a></button>
             {% else %}
@@ -91,6 +97,7 @@
     $('li.active').removeClass('active');
     $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
     });
+
 </script>
 </body>
 </html>
