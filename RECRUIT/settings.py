@@ -80,7 +80,7 @@ AUTH_USER_MODEL = 'authentication.User'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'RecruitDatabase',
+        'NAME': 'Recruit',
         'USER': 'postgres',
         'PASSWORD': '9843575436',
         'HOST': 'localhost',

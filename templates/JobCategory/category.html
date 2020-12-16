@@ -2,9 +2,7 @@
 
 {% block content %}
 
-<div class="main container-fluid ">
-
-    <div class="left col-sm-4" style="float:left; width: 360px;">
+<div class="left col-sm-4" style="float:left; width: 360px;">
         <h6 class="p-2" style="background:#A9CCE3; color:#2F4F4F;">JOB CATEGORIES</h6>
         <ul class="list-group">
             {% for x in categories %}
@@ -19,7 +17,9 @@
             </li>
             {% endfor %}
         </ul>
-        <!--<ul class="list-group">
+</div>
+
+<!--<ul class="list-group">
             <li class="list-group-item c1 list-group-item-action" style="color: rgb(2,96,170);">
                 <a href="{% url 'job_category' id=categories.0 %}">
                     <div class="p-2">
@@ -112,9 +112,8 @@
             </li>
         </ul>
     </div> !-->
-    </div>
 
-    <div class="right col-sm-8" style="float: right; width:825px;">
+<div class="right col-sm-8" style="float: right; width:825px;">
         <!--{% if category %}{{category.name}}{% endif %} !-->
         <div class="row container-fluid">
             {% for job in jobs %}
@@ -136,7 +135,5 @@
             {% endfor %}
         </div>
     </div>
-
-</div>
 
 {% endblock content %}

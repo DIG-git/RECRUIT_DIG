@@ -68,7 +68,11 @@
                             <td style="padding-left:30px;">{{i.employeeapplicants_set.all.count}}</td> <!--find no of applicants-->
                             <td>{{job.todate|date:'d M, Y'}}</td> <!-- status find out -->
                             <td style="padding-left:25px;"><a class="btn btn-sm btn-info" href="{{ job.description.url }}">View</a></td>
-                            <td style="padding-left:30px;"><a class="btn btn-sm btn-primary" href="{% url 'applicants' i.id %}">View</a></td>
+                            {% if i.employeeapplicants_set.all.count is 0 %}
+                                <td style="padding-left:15px;"><a class="btn btn-sm btn-outline-secondary" href="">No applicants</a></td>
+                            {% else %}
+                                <td style="padding-left:30px;"><a class="btn btn-sm btn-primary" href="{% url 'applicants' i.id %}">View</a></td>
+                            {% endif %}
                             <td style="padding-left:25px;"><a class="btn btn-sm btn-success" href="{% url 'update_job_form' i.id %}">Edit</a></td>
                             <td style="padding-left:15px;">
                                 <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#DeleteModal{{i.id}}" href="">Delete</a>
@@ -127,7 +131,11 @@
                             <td style="padding-left:30px;">{{i.employeeapplicants_set.all.count}}</td> <!--find no of applicants-->
                             <td>{{job.todate|date:'d M, Y'}}</td> <!-- status find out -->
                             <td style="padding-left:25px;"><a class="btn btn-sm btn-info" href="{{ job.description.url }}">View</a></td>
-                            <td style="padding-left:30px;"><a class="btn btn-sm btn-primary" href="{% url 'applicants' i.id %}">View</a></td>
+                            {% if i.employeeapplicants_set.all.count is 0 %}
+                                <td style="padding-left:15px;"><a class="btn btn-sm btn-outline-secondary" href="">No applicants</a></td>
+                            {% else %}
+                                <td style="padding-left:30px;"><a class="btn btn-sm btn-primary" href="{% url 'applicants' i.id %}">View</a></td>
+                            {% endif %}
                             <td style="padding-left:15px;">
                                 <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#Delete{{i.id}}" href="">Delete</a>
                                 <!-- Modal !-->

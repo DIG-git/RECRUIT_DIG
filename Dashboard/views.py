@@ -32,6 +32,7 @@ def dashboard1(request):
         Big5resultlist = None
 
     employee_list = EmployeeApplicants.objects.filter(userID=current_user)
+
     for employee in employee_list:
         job_list.append(employee.jobID)
 

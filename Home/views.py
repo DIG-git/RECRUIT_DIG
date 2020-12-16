@@ -20,15 +20,23 @@ def jobs(request):
 
 def job_category(request, category_slug=None):
     category = None
+    job_requirements = []
     categories = Category.objects.all()
     jobs = Job.objects.all()
     if category_slug:
-        category = get_object_or_404(Category, slug=category_slug)
-        print(category)
-        jobs = jobs.filter(job_category=category.slug)
-        print(jobs)
+        category = Category.objects.get(slug=category_slug)
+        print(category.slug)
+        jobs = Job.objects.filter(job_category=category.slug)
+        for job in jobs:
+            job_requirements.append(JobRequirements.objects.get(job_id=job))
     return render(request, 'JobCategory/category.html', {'categories': categories,
-                                                         'jobs': jobs})
+                                                         'jobs': job_requirements})
+
+
+def category(request):
+    categories = Category.objects.all()
+    jobs = JobRequirements.objects.all()
+    return render(request, 'JobCategory/category1.html', {'jobs': jobs, 'categories': categories})
 
 
 #def category(request, id):
@@ -171,5 +179,7 @@ def job_detail(request, pk):
 def search(request):
     search = request.POST['search']
     job_list = JobRequirements.objects.filter(post__icontains=search)
+    print(search)
+    print(job_list)
     return render(request, 'Home/search_result.html', {'jobs': job_list, 'search': search})
 
