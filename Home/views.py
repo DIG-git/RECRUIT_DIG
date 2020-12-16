@@ -179,7 +179,5 @@ def job_detail(request, pk):
 def search(request):
     search = request.POST['search']
     job_list = JobRequirements.objects.filter(post__icontains=search)
-    print(search)
-    print(job_list)
     return render(request, 'Home/search_result.html', {'jobs': job_list, 'search': search})
 
