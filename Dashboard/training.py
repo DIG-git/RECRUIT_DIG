@@ -32,18 +32,23 @@ def train(fnames):
     #print(docs)
 
     nlp_model_annotation = spacy.load('./Dashboard/nlp_model_annotation')
+    nlp_model_annotation_cv = spacy.load('./Dashboard/nlp_model_annotation_cv')
 
     documents = []
 
-    for d in docs:
-        document = nlp_model_annotation(d)
+    for index, d in enumerate(docs):
+        if index == len(docs) - 1:
+            document = nlp_model_annotation(d)
+        else:
+            document = nlp_model_annotation_cv(d)
+
         text = ""
 
         for ent in document.ents:
             print(f'{ent.label_.upper():{30}} - {ent.text}')
             text = text + str(ent.text)
 
-        if not text:
+        if len(text) < 50:
             documents.append(d)
         else:
             documents.append(text)

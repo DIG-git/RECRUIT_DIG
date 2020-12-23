@@ -32,6 +32,10 @@
     </div>
     {% endif %}
 
+    <div class="text-left font-italic mb-2 alert alert-primary" style="padding:5px;">
+        <strong>--</strong> (Strongly disagree), <strong>-</strong> (Disagree), <strong>+/-</strong> (Neutral), <strong>+</strong> (Agree), <strong>++</strong> (Strongly Agree)
+    </div>
+
     <form class="submit" method="POST" action="{% url 'personality_score' %}">
         {% csrf_token %}
         <table class="table table-striped">

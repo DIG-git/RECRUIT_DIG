@@ -4,7 +4,6 @@ from .models import EmployeeApplicants, JobRequirements, Job, Aptitude
 from Home.models import Big5result
 
 
-
 def apply(request, job_id):
     job_info = Job.objects.get(id=job_id)
 
@@ -49,7 +48,6 @@ def add_apply(request, job_id):
         return render(request, 'Forms/aptitude_answerSheet.html', {'questions': ques, 'job_id': job_id})
     else:
         return redirect('/Dashboard/Employee')
-
 
 
 def add_jobs(request):

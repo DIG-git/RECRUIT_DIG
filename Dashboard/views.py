@@ -4,9 +4,9 @@ from django.core.checks import messages
 from django.template.defaulttags import register
 
 from django.shortcuts import render, redirect
-from Apply.models import EmployeeApplicants, Job, JobRequirements, Similarity
+from Apply.models import EmployeeApplicants, Job, JobRequirements, Similarity, Aptitude
 from Home.models import Big5result
-from authentication.models import EmployeeInfo
+from authentication.models import EmployeeInfo, CompanyInfo
 
 from .training import train
 from .forms import JobForm, ApplyForm
@@ -16,8 +16,8 @@ def dashboard(request):
 
     current_user = request.user
     job_list = Job.objects.filter(userID=current_user)
-
-    return render(request, 'Dashboard/dashboard.html', {'job_list': job_list})
+    info = CompanyInfo.objects.get(user=current_user)
+    return render(request, 'Dashboard/dashboard.html', {'job_list': job_list, 'info': info})
 
 
 def dashboard1(request):
@@ -99,7 +99,9 @@ def update_job(request, job_id):
 
 def delete_job(request, job_id):
     job = Job.objects.get(id=job_id)
+    aptitude = Aptitude.objects.filter(job_id=job_id)
     job.delete()
+    aptitude.delete()
     return redirect('/Dashboard/')
 
 
