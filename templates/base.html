@@ -30,17 +30,13 @@
                 <a class="nav-link" href="/" style="">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/jobs">Jobs</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="{% url 'job_list' %}">Job Category</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/personality_test">Personality Test</a>
-            </li>
+            {%if user.is_employee %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/personality_test">Personality Test</a>
+                </li>
+            {% endif %}
             {% if user.is_authenticated %}
                 {% if user.is_company %}
                     <li class="nav-item">
@@ -52,6 +48,9 @@
                     </li>
                 {% endif %}
             {% endif %}
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
         </ul>
         <form class="form-inline my-2 my-lg-0 mr-5" method="POST" action="{% url 'search' %}">
             {% csrf_token %}

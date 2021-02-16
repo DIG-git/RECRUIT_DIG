@@ -21,7 +21,7 @@ class Category(models.Model):
         return self.name
 
     def get_absolute_path(self):
-        return reverse('job_category', kwargs={'category_slug': self.slug})
+        return reverse('job_category', kwargs={'id': self.slug})
 
     def get_absolute_url(self):
         return reverse('job_list')

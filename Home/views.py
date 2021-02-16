@@ -18,19 +18,25 @@ def jobs(request):
     return render(request, 'Jobs/jobs.html', {'categories': categories})
 
 
-def job_category(request, category_slug=None):
+def job_category(request, id=None):
     category = None
+    count = 0
     job_requirements = []
     categories = Category.objects.all()
-    jobs = Job.objects.all()
-    if category_slug:
-        category = Category.objects.get(slug=category_slug)
+    # jobs = Job.objects.all()
+    if id:
+        category = Category.objects.get(slug=id)
         print(category.slug)
         jobs = Job.objects.filter(job_category=category.slug)
         for job in jobs:
             job_requirements.append(JobRequirements.objects.get(job_id=job))
+        print(job_requirements)
+        for job in job_requirements:
+            if job.active:
+                count = count + 1
     return render(request, 'JobCategory/category.html', {'categories': categories,
-                                                         'jobs': job_requirements})
+                                                         'jobs': job_requirements, 'category': category.name,
+                                                         'active': count})
 
 
 def category(request):

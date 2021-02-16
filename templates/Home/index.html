@@ -36,6 +36,7 @@
     <h4 class="mt-5 ml-3 mr-3 p-2 mb-3" style="background:#A9CCE3; color:#2F4F4F;">RECENT JOBS</h4>
     <div class="row container-fluid">
         {% for job in jobs %}
+        {% if job.active %}
             <div class="col-sm-4 mt-3">
                 <div class="card c1">
                     <div class="overlay1"></div>
@@ -50,6 +51,7 @@
                     </div>
                 </div>
             </div>
+        {% endif %}
         {% endfor %}
     </div>
 </section>
