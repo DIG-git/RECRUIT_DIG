@@ -4,112 +4,191 @@
         table {
             counter-reset: section;
         }
+
         .count:before {
             counter-increment: section;
             content: counter(section);
         }
+
 </style>
+
+<script>
+    const handleGetData = () => {
+    $.ajax({
+        type: 'GET',
+        url: '/Dashboard/compatible/',
+        success: function(response){
+        alert('Button');
+<!--            maxSize = response.max-->
+<!--            const data = response.data-->
+<!--            spinnerBox.classList.remove('not-visible')-->
+<!--            setTimeout(()=>{-->
+<!--                spinnerBox.classList.add('not-visible')-->
+<!--                data.map(post=>{-->
+<!--                    console.log(post.id)-->
+<!--                    postsBox.innerHTML += `<div class="card p-3 mt-3 mb-3">-->
+<!--                                                ${post.name}-->
+<!--                                                <br>-->
+<!--                                                ${post.body}-->
+<!--                                            </div>`-->
+<!--                })-->
+<!--                if(maxSize){-->
+<!--                    console.log('done')-->
+<!--                    loadBox.innerHTML = "<h4>No more posts to load</h4>"-->
+<!--                }-->
+<!--            }, 500)-->
+        },
+        error: function(error){
+            console.log(error)
+        }
+    })
+}
+
+document.getElementById.addEventListener('click', ()=>{
+    handleGetData()
+})
+</script>
+
 <div class="container-fluid" style="padding-top:100px;">
     <nav id="sidebar" style="float:left; margin-top: 4px; width:30%">
-         <div style="padding:8px;">
-             <p class="text-center" style="text-transform:uppercase;"><span><strong> {{ info.user.username }}</strong></span></p>
-             <p><small><strong class="text-primary" style="text-transform:uppercase;">Contact : </strong></small>{{ info.Phone }}</p>
-             <p><small><strong class="text-primary" style="text-transform:uppercase;">Email : </strong></small>{{ info.Email }}</p>
-             <p><small><strong class="text-primary" style="text-transform:uppercase;">Address : </strong></small>{{ info.Address }}</p>
-         </div>
+        <div style="margin-left: 18px;">
+            <p class="text-center" style="text-transform:uppercase;">
+                <span><strong> {{ info.user.username }}</strong></span>
+            </p>
+            <p><small><strong class="text-primary" style="text-transform:uppercase;">Contact : </strong></small>{{ info.Phone }}</p>
+            <p><small><strong class="text-primary" style="text-transform:uppercase;">Email : </strong></small>{{ info.Email }}</p>
+            <p><small><strong class="text-primary" style="text-transform:uppercase;">Address : </strong></small>{{ info.Address }}</p>
+        </div>
         {% if results %}
-            <div class="card-body">
-            <h6 class="p-1 mb-2" style="background:#A9CCE3; color:#2F4F4F;">Personality</h6>
+        <div class="card-body">
+            <h6 class="p-1" style="background:#A9CCE3; color:#2F4F4F;">Personality</h6>
             <div class="progress" style="height:25px;">
                 <h6 style="margin-right:66px;">openness: </h6>
-                <div class="progress-bar progress-bar-striped" role="progressbar" style="height:20px; width: {{results.openness}}" aria-valuenow="10"
-                     aria-valuemin="0" aria-valuemax="100">{{results.openness}}%</div>
+                <div class="progress-bar progress-bar-striped" role="progressbar"
+                     style="height:20px; width: {{results.openness}}" aria-valuenow="10"
+                     aria-valuemin="0" aria-valuemax="100">{{results.openness}}%
+                </div>
             </div>
             <div class="progress" style="height:25px;">
                 <h6 style="margin-right:5px;">conscientiousness: </h6>
-                <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="height:20px; width: {{results.conscientiousness}}" aria-valuenow="10"
-                     aria-valuemin="0" aria-valuemax="100">{{results.conscientiousness}}%</div>
+                <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
+                     style="height:20px; width: {{results.conscientiousness}}" aria-valuenow="10"
+                     aria-valuemin="0" aria-valuemax="100">{{results.conscientiousness}}%
+                </div>
             </div>
             <div class="progress" style="height:25px;">
                 <h6 style="margin-right:46px;">extraversion: </h6>
-                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="height:20px; width: {{results.extraversion}}" aria-valuenow="10"
-                     aria-valuemin="0" aria-valuemax="100">{{results.extraversion}}%</div>
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                     style="height:20px; width: {{results.extraversion}}" aria-valuenow="10"
+                     aria-valuemin="0" aria-valuemax="100">{{results.extraversion}}%
+                </div>
             </div>
             <div class="progress" style="height:25px;">
                 <h6 style="margin-right:32px;">agreeableness: </h6>
-                <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="height:20px; width: {{results.agreeableness}}" aria-valuenow="10"
-                     aria-valuemin="0" aria-valuemax="100">{{results.agreeableness}}%</div>
+                <div class="progress-bar progress-bar-striped bg-warning" role="progressbar"
+                     style="height:20px; width: {{results.agreeableness}}" aria-valuenow="10"
+                     aria-valuemin="0" aria-valuemax="100">{{results.agreeableness}}%
+                </div>
             </div>
             <div class="progress" style="height:25px;">
                 <h6 style="margin-right:50px;">neuroticism: </h6>
-                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="height:20px; width: {{results.neuroticism}}" aria-valuenow="10"
-                     aria-valuemin="0" aria-valuemax="100">{{results.neuroticism}}%</div>
+                <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"
+                     style="height:20px; width: {{results.neuroticism}}" aria-valuenow="10"
+                     aria-valuemin="0" aria-valuemax="100">{{results.neuroticism}}%
+                </div>
             </div>
         </div>
         {% else %}
-            <a href="{% url 'personality_test' %}" class="btn btn-primary" style="margin:10px;">Take Personality Test</a>
+        <a href="{% url 'personality_test' %}" class="btn btn-primary" style="margin:10px;">Take Personality Test</a>
+        {% endif %}
+        <div style="margin-left: 10px; margin-top: 10px;">
+            <p><small><strong class="text-primary" style="text-transform:uppercase;">Most Compatible Jobs: </strong></small></p>
+            {% if not compatible %}
+            <a href="{% url 'compatible' %}">
+                <button class="btn btn-primary" id="reload-btn">
+                    Reload Compatible Jobs
+                </button>
+            </a>
+            {% else %}
+            {% for c in compatible %}
+            <a href="{% url 'job_detail' c.job_id.id %}">
+                <h6> {{c.post}} </h6>
+            </a>
+            {% endfor %}
+            <a href="{% url 'compatible' %}">
+                <button class="btn btn-primary" id="reload-btn1">
+                    Reload Compatible Jobs
+                </button>
+            </a>
+        </div>
         {% endif %}
     </nav>
 </div>
-</div>
-    </nav>
-    <div id="content" style="float:right; width:76%">
-        <div class="row">
-            <div class="col-md">
-                <div class="card card-body">
-                    <table class="table table-sm table-hover">
-                        <tr>
-                            <th>S.No.</th>
-                            <th>Designation</th>
-                            <th>Applicant</th>
-                            <th>Category</th>
-                            <th>Requirements</th>
-                            <th>Your CV</th>
-                            <th>Edit Application</th>
-                            <th>Delete Application</th>
-                        </tr>
-                        {% for job_list,employee_list in zipped_list %}
-                        <tr>
-                            <td class="count"></td>
-                            <td>{{job_list.post}}</td>
-                            <td>{{employee_list.fname}}</td>
-                            <td style="padding-left:30px;">{{job_list.job_id.job_category}}</td>
-                            <td style="padding-left:30px;"><a class="btn btn-sm btn-info" href="{{job_list.description.url}}">View</a></td>
-                            <td style="padding-left:10px;"><a class="btn btn-sm btn-info" href="{{employee_list.resume.url}}">View</a></td>
-                            {% if job_list.active %}
-                                <td style="padding-left:35px;"><a class="btn btn-sm btn-info" href="{% url 'update_apply_form' employee_list.id %}">Edit</a></td>
-                            {% else %}
-                                <td style="padding-left:30px;"><a class="btn btn-sm btn-outline-secondary">Expired</a></td>
-                            {% endif %}
-                            <td style="padding-left:35px;">
-                                <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#DeleteModal{{employee_list.id}}" href="">Delete</a>
-                                <!-- Modal !-->
-                                    <div class="modal" tabindex="-1" role="dialog" id="DeleteModal{{employee_list.id}}">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Delete</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p><strong>Are you sure you want to delete this application?</strong></p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-danger"><a href="{% url 'delete_application' employee_list.id %}">Delete</a></button>
-                                                </div>
-                                            </div>
+
+<div id="content" style="float:right; width:76%">
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+                <table class="table table-sm table-hover">
+                    <tr>
+                        <th>S.No.</th>
+                        <th>Designation</th>
+                        <th>Category</th>
+                        <th>Requirements</th>
+                        <th>Your CV</th>
+                        <th>Edit Application</th>
+                        <th>Delete Application</th>
+                    </tr>
+                    {% for job_list,employee_list in zipped_list %}
+                    <tr>
+                        <td class="count"></td>
+                        <td>{{job_list.post}}</td>
+                        <td style="padding-left:30px;">{{job_list.job_id.job_category}}</td>
+                        <td style="padding-left:30px;"><a class="btn btn-sm btn-info"
+                                                          href="{{job_list.description.url}}">View</a></td>
+                        <td style="padding-left:10px;"><a class="btn btn-sm btn-info"
+                                                          href="{{employee_list.resume.url}}">View</a></td>
+                        {% if job_list.active %}
+                        <td style="padding-left:35px;"><a class="btn btn-sm btn-info"
+                                                          href="{% url 'update_apply_form' employee_list.id %}">Edit</a>
+                        </td>
+                        {% else %}
+                        <td style="padding-left:30px;"><a class="btn btn-sm btn-outline-secondary">Expired</a></td>
+                        {% endif %}
+                        <td style="padding-left:35px;">
+                            <a class="btn btn-sm btn-danger" data-toggle="modal"
+                               data-target="#DeleteModal{{employee_list.id}}" href="">Delete</a>
+                            <!-- Modal !-->
+                            <div class="modal" tabindex="-1" role="dialog" id="DeleteModal{{employee_list.id}}">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Delete</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p><strong>Are you sure you want to delete this application?</strong></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                            </button>
+                                            <button type="submit" class="btn btn-danger"><a
+                                                    href="{% url 'delete_application' employee_list.id %}">Delete</a>
+                                            </button>
                                         </div>
                                     </div>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </table>
-                </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
             </div>
         </div>
     </div>
 </div>
+</div>
+
 {% endblock content %}

@@ -21,27 +21,18 @@
 {% endif %}
 
 <div class="container-fluid" style="padding-top:100px;">
-    <nav id="sidebar" style="float:left;">
-        <ul class="list-unstyled components">
-            <li class="active">
-                <a href="#"><i class="fas fa-home pr-2"></i>Dashboard</a>
-            </li>
-            <li style="margin-left:3px;">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i
-                        class="far fa-address-book mr-2"></i>Jobs</a>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li>
-                        <a href="#">Post a Job</a>
-                    </li>
-                    <li>
-                        <a href="#">List Jobs/Applicants</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+    <nav id="sidebar" style="float:left; padding:10px;">
+        <p class="text-center text-info" style="text-transform:uppercase;"><span><strong> {{ info.user.username }}</strong></span></p>
+         <p><strong>Contact: </strong><span>{{ info.Phone }}</span></p>
+         <p><strong>Address: </strong><span> {{ info.Address }}</span></p>
+         <p><strong>Email: </strong><span> {{ info.Email }}</span></p>
+        <a href="{% url 'add_jobs' %}">
+            <button type="button" class="btn btn-primary" style="margin-top:10px; margin-left:43px;">
+                Create New Job
+            </button>
+        </a>
     </nav>
     <div id="content" style="float:right; width:78%">
-        <a href="{% url 'add_jobs' %}" class="btn btn-primary" style="margin-bottom:10px;">Create a new job</a>
         <div class="row">
             <div class="col-md">
                 <h4>Current Jobs</h4>

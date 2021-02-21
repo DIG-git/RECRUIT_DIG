@@ -182,3 +182,4 @@ def aptitude_result(request, job_id):
 
     jobs = JobRequirements.objects.order_by('-fromdate')[:9]
     return render(request, 'Home/index.html', {'jobs': jobs})
+

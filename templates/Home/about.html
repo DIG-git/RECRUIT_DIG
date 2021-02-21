@@ -1,0 +1,104 @@
+{% extends 'base1.html' %}
+
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, Initial-scale=1.0">
+    <title>About</title>
+
+</head>
+
+<style>
+  *{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+ }
+ body{
+   min-height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: #f1f1f1;
+   margin-left: 80px;
+   margin-right: 80px;
+   margin-top: 60px;
+
+ }
+
+ .inner-container{
+   width: 55%
+   float: right;
+   background-color: #fdfdfd;
+   padding: 60px;
+   box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.3);
+ }
+ .inner-container h1{
+   margin-bottom: 50px;
+   font-size: 30px;
+   font-weight: 900;
+ }
+ .text{
+   font-size: 15px;
+   color: #545454;
+   line-height: 30px;
+   text-align: justify;
+   margin-bottom: 40px;
+ }
+ .skills button{
+   font-size: 22px;
+   text-align: center;
+   letter_spacing: 2px;
+   border: none;
+   border-radius: 20px;
+   padding: 8px;
+   width: 200px;
+   background-color: #007bff;
+   color: white;
+   cursor: pointer;
+ }
+
+ .skills button:hover{
+    transition: 1s;
+    background-color: #ecf5f5;
+    color: #00999c;
+    text-align: center;
+
+  }
+
+</style>
+
+<script>
+document.getElementById('button').addEventListener('click', ()=>{
+    console.log('Button');
+    alert('Contact');
+});
+</script>
+
+<body>
+<div class="about">
+    <div class="inner-container">
+        <h1>About Us</h1>
+        <p class="text">
+            This application was developed by Gayatri Gharti Magar, Ichhya Amatya and Dristi Dugar. This
+            application was developed as a job hunting as well as CV analysis and ranking website.
+        </p>
+        <p class="text">
+            This project will enable a more effective way to grade submitted candidate CVs from a large number
+            of applicants providing a consistent and fair CV ranking policy. System will rank the experience,
+            qualifications, projects and key skills required for particular job position. This system also
+            employs personality evaluation (Big5 Personality test) through standard questionnaires. Finally,
+            combining the results of both CV analysis and personality evaluation all the candidates are graded
+            accordingly which can be viewed by the HR department to select the suitable candidate.
+        </p>
+        <div class="skills">
+            <button id="button">Contact Us</button>
+        </div>
+    </div>
+    </div>
+</div>
+
+</body>
+</html>
+{% endblock content %}

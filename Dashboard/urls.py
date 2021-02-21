@@ -12,4 +12,5 @@ urlpatterns = [
     path('UpdateJob/<str:job_id>', views.update_job_form, name='update_job_form'),
     path('JobUpdate/<str:job_id>', views.update_job, name='update_job'),
     path('DeleteJob/<str:job_id>', views.delete_job, name='delete_job'),
+    path('Compatible', views.description_list, name='compatible'),
 ]

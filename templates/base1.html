@@ -7,12 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     <link rel="stylesheet" href="{% static 'css/style2.css' %}">
     <link rel="stylesheet" href="{% static 'css/jobs.css' %}">
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 </head>
 
@@ -32,17 +37,13 @@
                 <a class="nav-link" href="/" style="">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/jobs">Jobs</a>
+                <a class="nav-link" href="{% url 'job_list' %}">Job Category</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{categories.get_absolute_url}}">Job Category</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/personality_test">Personality Test</a>
-            </li>
+            {%if user.is_employee %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/personality_test">Personality Test</a>
+                </li>
+            {% endif %}
             {% if user.is_authenticated %}
                 {% if user.is_company %}
                     <li class="nav-item">
@@ -54,6 +55,9 @@
                     </li>
                 {% endif %}
             {% endif %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'about' %}">About</a>
+            </li>
         </ul>
         <form class="form-inline my-2 my-lg-0 mr-5" method="POST" action="{% url 'search' %}">
             {% csrf_token %}
@@ -99,5 +103,6 @@
     });
 
 </script>
+
 </body>
 </html>

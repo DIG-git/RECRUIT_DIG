@@ -18,11 +18,11 @@ def register(request):
         phone = request.POST['Phone']
 
         response = requests.get(
-            # 'https://jsonplaceholder.typicode.com/todos/1')
-            f'https://app.verify-email.org/api/v1/7LsG8FmfeZnfrffTAOOCkFlrYG7QBbzXtZpnJmAwDp1kjvTKpH/verify/{email}')
+            'https://jsonplaceholder.typicode.com/todos/1')
+            # f'https://app.verify-email.org/api/v1/7LsG8FmfeZnfrffTAOOCkFlrYG7QBbzXtZpnJmAwDp1kjvTKpH/verify/{email}')
             #f'https://app.verify-email.org/api/v1/UBTW2fIw7W2yR5ICPldZGuah72wKN8gTsAB7aho06HoiKw9ySC/verify/{email}')
         data = response.json();
-        if (data['status'] == 1):  # id=1
+        if (data['id'] == 1):  # id=1
             if password == confirm:
                 try:
                     user = User.objects.get(username=username)
@@ -71,11 +71,11 @@ def register_Company(request):
         phone = request.POST['Phone']
         # API call
         response = requests.get(
-            # 'https://jsonplaceholder.typicode.com/todos/1')
-            f'https://app.verify-email.org/api/v1/7LsG8FmfeZnfrffTAOOCkFlrYG7QBbzXtZpnJmAwDp1kjvTKpH/verify/{email}')
+            'https://jsonplaceholder.typicode.com/todos/1')
+            # f'https://app.verify-email.org/api/v1/7LsG8FmfeZnfrffTAOOCkFlrYG7QBbzXtZpnJmAwDp1kjvTKpH/verify/{email}')
             #f'https://app.verify-email.org/api/v1/UBTW2fIw7W2yR5ICPldZGuah72wKN8gTsAB7aho06HoiKw9ySC/verify/{email}')
         data = response.json();
-        if (data['status'] == 1):  # id=1
+        if (data['id'] == 1):  # id=1
             if password == confirm:
                 try:
                     user = User.objects.get(username=cname)

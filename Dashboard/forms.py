@@ -11,5 +11,5 @@ class JobForm(forms.ModelForm):
 class ApplyForm(forms.ModelForm):
     class Meta:
         model = EmployeeApplicants
-        exclude = ['userID', 'jobID']
+        exclude = ['userID', 'jobID', 'aptitude_score']
 
