@@ -6,119 +6,33 @@
 
     <div class="left col-sm-4" style="float:left; width: 360px;">
         <h6 class="p-2" style="background:#A9CCE3; color:#2F4F4F;">JOB CATEGORIES</h6>
-        <ul class="list-group">
+        <div class="list-group">
+            <a href="{% url 'job_list' %}" class="list-group-item list-group-item-action c1" style="color: rgb(2,96,170);">
+                <h7 style="margin-left:11px;">All</h7>
+            </a>
             {% for x in categories %}
-            <li class="list-group-item c1 list-group-item-action" style="color: rgb(2,96,170);">
-                <a href="{{ x.get_absolute_path }}"></a>
+            <a href="{{ x.get_absolute_path }}" class="list-group-item list-group-item-action c1" style="color: rgb(2,96,170);">
+                <div class="overlay1"></div>
                     <div class="p-2">
                         <h7 class="card-title">
                             {{x.name}}
                         </h7>
                     </div>
-                    <div class="overlay1"></div>
-            </li>
-            {% endfor %}
-        </ul>
-        <!--<ul class="list-group">
-            <li class="list-group-item c1 list-group-item-action" style="color: rgb(2,96,170);">
-                <a href="{% url 'job_category' id=categories.0 %}">
-                    <div class="p-2">
-                        <h7 class="card-title">
-                            Government
-                        </h7>
-                    </div>
-                    <div class="overlay1"></div>
             </a>
-            </li>
-            <li class="list-group-item c1 list-group-item-action" style="color: rgb(2,96,170);">
-                <a href="{{url}}">
-                    <div class="p-2">
-                        <h7 class="card-title">
-                            IT & Telecommunication
-                        </h7>
-                    </div>
-                    <div class="overlay1"></div>
-                </a>
-            </li>
-            <li class="list-group-item c1 list-group-item-action" style="color: rgb(2,96,170);">
-                <a href="/?category={{categories.2}}">
-                    <div class="p-2">
-                        <h7 class="card-title">
-                            Hospitality
-                        </h7>
-                    </div>
-                    <div class="overlay1"></div>
-                </a>
-            </li>
-            <li class="list-group-item c1 list-group-item-action" style="color: rgb(2,96,170);">
-                <a href="/?category={{categories.3}}">
-                    <div class="p-2">
-                        <h7 class="card-title">
-                            Administration/Management
-                        </h7>
-                    </div>
-                    <div class="overlay1"></div>
-                </a>
-            </li>
-            <li class="list-group-item c1 list-group-item-action" style="color: rgb(2,96,170);">
-                <a href="/?category={{categories.4}}">
-                    <div class="p-2">
-                        <h7 class="card-title">
-                            NGO/INGO
-                        </h7>
-                    </div>
-                    <div class="overlay1"></div>
-                </a>
-            </li>
-            <li class="list-group-item c1 list-group-item-action" style="color: rgb(2,96,170);">
-                <a href="/?category={{categories.5}}">
-                    <div class="p-2">
-                        <h7 class="card-title">
-                            Teaching/Education
-                        </h7>
-                    </div>
-                    <div class="overlay1"></div>
-                </a>
-            </li>
-            <li class="list-group-item c1 list-group-item-action" style="color: rgb(2,96,170);">
-                <a href="/?category={{categories.6}}">
-                    <div class="p-2">
-                        <h7 class="card-title">
-                            Construction/Engineering
-                        </h7>
-                    </div>
-                    <div class="overlay1"></div>
-                </a>
-            </li>
-            <li class="list-group-item c1 list-group-item-action" style="color: rgb(2,96,170);">
-                <a href="/?category={{categories.7}}">
-                    <div class="p-2">
-                        <h7 class="card-title">
-                            Architecture/Interior Design
-                        </h7>
-                    </div>
-                    <div class="overlay1"></div>
-                </a>
-            </li>
-            <li class="list-group-item c1 list-group-item-action" style="color: rgb(2,96,170);">
-                <a href="/?category={{categories.8}}">
-                    <div class="p-2">
-                        <h7 class="card-title">
-                            Sales/Public Relation
-                        </h7>
-                    </div>
-                    <div class="overlay1"></div>
-                </a>
-            </li>
-        </ul>
-    </div> !-->
+            {% endfor %}
+        </div>
     </div>
 
-    <div class="right col-sm-8" style="float: right; width:825px;">
-        <!--{% if category %}{{category.name}}{% endif %} !-->
-        <div class="row container-fluid">
+    <div class="right col-sm-8" style="float: left; width: 825px; margin-left: 30px">
+        {% if category %}<h3><strong>{{category}}</strong></h3>
+            {% if not active %}
+                <p>No jobs found.</p>
+            {% endif %}
+        {% endif %}
+        <div class="row">
             {% for job in jobs %}
-            <div class="col-sm-3 mt-3">
+             {% if job.active %}
+                <div class="col-sm-6 mt-3">
                 <div class="card c1">
                     <div class="overlay1"></div>
                     <div class="card-body">
@@ -126,13 +40,15 @@
                             {{job.post}}</h5>
                         <h6 class="card-text" style="color: rgb(85, 85, 85);">
                             {{job.job_id.comp_name}}</h6>
-                        <p><i class="fas fa-map-marker-alt mr-1"></i>{{job.address}}<i
-                                class="far fa-calendar-alt ml-3 mr-1"></i>{{job.todate|date:'d M, Y'}}</p>
-                        <a href="{% url 'job_detail' job.job_id.id %}" class="btn btn-primary btn-sm right"
-                           style="position:relative; float:right;">View more</a>
+                        <h7><i class="fas fa-map-marker-alt mr-1"></i>{{job.address}}</h7>
+                        <p><i class="far fa-calendar-alt mr-1"></i>{{job.todate|date:'d M, Y'}}</p>
+                        <a href="{% url 'job_detail' job.job_id.id %}" class="btn btn-primary btn-sm" style="margin-left:210px; position:relative;">
+                            View more
+                        </a>
                     </div>
                 </div>
-            </div>
+                </div>
+            {% endif %}
             {% endfor %}
         </div>
     </div>

@@ -19,9 +19,6 @@ class Job(models.Model):
     comp_name = models.CharField(max_length=30, blank=True, null=True)
     job_category = models.CharField(max_length=6, choices=CategoryChoice)
 
-    def get_absolute_url(self):
-        return reverse('/job_category', kwargs={'id': self.job_category})
-
 
 class EmployeeApplicants(models.Model):
     userID = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, default=None)
@@ -73,5 +70,13 @@ class Aptitude(models.Model):
     optc = models.CharField(max_length=500)
     optd = models.CharField(max_length=500)
     answer = models.CharField(max_length=500)
+
+
+class Compatible(models.Model):
+    userID = models.IntegerField()
+    desc1 = models.IntegerField()
+    desc2 = models.IntegerField()
+    desc3 = models.IntegerField()
+
 
 

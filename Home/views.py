@@ -1,15 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 
-from Apply.models import JobRequirements, Job
+from Apply.models import JobRequirements, Job, EmployeeApplicants
 from Home.Big5 import Big5
 from .models import Big5result, Category
-from django.urls import reverse
 
 
 def index(request):
     categories = Category.objects.first()
     print(categories)
-    jobs = JobRequirements.objects.order_by('-fromdate')[:9]
+    jobs = JobRequirements.objects.order_by('-fromdate')[:15]
     return render(request, 'Home/index.html', {'jobs': jobs, 'categories': categories})
 
 
@@ -18,29 +17,31 @@ def jobs(request):
     return render(request, 'Jobs/jobs.html', {'categories': categories})
 
 
-def job_category(request, category_slug=None):
+def job_category(request, id=None):
     category = None
+    count = 0
+    job_requirements = []
     categories = Category.objects.all()
-    jobs = Job.objects.all()
-    if category_slug:
-        category = get_object_or_404(Category, slug=category_slug)
-        print(category)
-        jobs = jobs.filter(job_category=category.slug)
+    if id:
+        category = Category.objects.get(slug=id)
+        print(category.slug)
+        jobs = Job.objects.filter(job_category=category.slug)
         print(jobs)
-    return render(request, 'JobCategory/category.html', {'categories': categories,
-                                                         'jobs': jobs})
+        for job in jobs:
+            print(JobRequirements.objects.get(job_id=job))
+            job_requirements.append(JobRequirements.objects.get(job_id=job))
+        print(job_requirements)
+        for job in job_requirements:
+            if job.active:
+                count = count + 1
+    return render(request, 'JobCategory/category.html', {'categories': categories, 'jobs': job_requirements, 'category': category.name, 'active': count})
 
 
-#def category(request, id):
-    #categories = ["G", "IT", "H", "AM", "NI", "T", "Ar", "S"]
-    # categoryID = request.GET.get('category')
-    # print(categoryID)
-    #jobs = Job.objects.filter(job_category=id)
-    #print(id)
-    # print(jobs)
-    # url = reverse('job_category', args=['IT'])
-    # return HttpResponseRedirect(reverse('job_category'))
-    # return render(request, 'JobCategory/category.html', {'categories': categories, 'jobs': jobs, 'url': url})
+def category(request):
+    categories = Category.objects.all()
+    jobs = JobRequirements.objects.all()
+    print(categories)
+    return render(request, 'JobCategory/category1.html', {'jobs': jobs, 'categories': categories})
 
 
 def personality_test(request):
@@ -165,10 +166,20 @@ def get_ques():
 
 def job_detail(request, pk):
     job_requirements = JobRequirements.objects.get(job_id=pk)
-    return render(request, 'Home/job_detail.html', {'job_requirements': job_requirements})
+    current_user = request.user
+    apply = EmployeeApplicants.objects.filter(userID=current_user, jobID=pk)
+    return render(request, 'Home/job_detail.html', {'job_requirements': job_requirements, 'applied': apply})
 
 
 def search(request):
+    searched_job = []
     search = request.POST['search']
     job_list = JobRequirements.objects.filter(post__icontains=search)
-    return render(request, 'Home/search_result.html', {'jobs': job_list, 'search': search})
+    for job in job_list:
+        if job.active:
+            searched_job.append(job)
+    return render(request, 'Home/search_result.html', {'jobs': searched_job, 'search': search})
+
+
+def about(request):
+    return render(request, 'Home/about.html')

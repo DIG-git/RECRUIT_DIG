@@ -15,14 +15,13 @@ class Big5result(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=40, blank=True, null=True)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(max_length=4, unique=True)
 
     def __str__(self):
         return self.name
 
     def get_absolute_path(self):
-        print(self.slug)
-        return reverse('job_category', kwargs={'category_slug': self.slug})
+        return reverse('job_category', kwargs={'id': self.slug})
 
     def get_absolute_url(self):
         return reverse('job_list')

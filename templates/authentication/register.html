@@ -9,7 +9,7 @@
 
     <style type="text/css">
 .register{
-    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+    background: -webkit-linear-gradient(left, #3B9C9C, #43C6DB);
     margin-top: 3%;
     padding: 3%;
 }
@@ -65,7 +65,7 @@
     border: none;
     border-radius: 1.5rem;
     padding: 2%;
-    background: #0062cc;
+    background: #3B9C9C;
     color: #fff;
     font-weight: 600;
     width: 50%;
@@ -74,7 +74,7 @@
 .register .nav-tabs{
     margin-top: 3%;
     border: none;
-    background: #0062cc;
+    background: #3B9C9C;
     border-radius: 1.5rem;
     width: 28%;
     float: right;
@@ -92,8 +92,8 @@
 }
 .register .nav-tabs .nav-link.active{
     width: 100px;
-    color: #0062cc;
-    border: 2px solid #0062cc;
+    color: #3B9C9C;
+    border: 2px solid #3B9C9C;
     border-top-left-radius: 1.5rem;
     border-bottom-left-radius: 1.5rem;
 }
@@ -103,7 +103,7 @@
     margin-bottom: -15%;
     color: #495057;
 }
-    </style>
+</style>
 </head>
 <body>
 
@@ -119,10 +119,9 @@
             <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
             <h3>Welcome</h3>
             <br>
-            <a href="{% url 'login'%}" class="btn btn-success">Login</a>
+            <a href="{% url 'login'%}" class="btn-info btn" style="background:#306EFF;">Login</a>
         </div>
         <div class="col-md-9 register-right">
-            <!--                        <h3 class="register-heading">Apply as a Employee</h3>-->
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active ml-3 pl-3 my-1" id="nav-home-tab" data-toggle="tab"
@@ -158,7 +157,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="maxl">
-                                        <label class="radio inline">
+                                        <label class="radio inline" style="margin-right:12px;">
                                             <input type="radio" name="Gender" value="M" checked>
                                             <span> Male </span>
                                         </label>

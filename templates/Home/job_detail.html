@@ -43,7 +43,7 @@ body{
                 <p><strong>Experience: </strong><span>{{job_requirements.experience}}years</span></p>
                 <a href="{{job_requirements.description.url}}" class="btn btn-primary" style="float:left;">Click to view more</a>
                 <a
-                        {% if user.is_employee %}
+                        {% if user.is_employee and not applied %}
                             href="{% url 'apply' job_requirements.job_id.id %}"
                         {% else %}
                             href="{% url 'register' %}"
