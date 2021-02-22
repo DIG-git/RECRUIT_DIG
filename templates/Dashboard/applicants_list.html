@@ -78,7 +78,7 @@
         <td>{{ info.address }}</td>
         <td>{{ info.gender }}</td>
         <td>{{ info.dob|date:'d M, Y' }}</td>
-        <td>{{ info.aptitude_score }}</td>
+        <td style="padding-left:30px;">{{ info.aptitude_score }}</td>
         <td><a href="{{ info.resume.url }}" class="btn btn-primary btn-sm right"> View Resume</a></td>
     </tr>
     {% endfor %}

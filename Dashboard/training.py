@@ -136,7 +136,6 @@ def train_desc(fnames):
             document = nlp_CV_annotation(d)
         else:
             document = nlp_model_annotation(d)
-
         text = ""
 
         for ent in document.ents:

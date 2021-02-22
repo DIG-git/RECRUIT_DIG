@@ -18,7 +18,6 @@ def dashboard(request):
     current_user = request.user
     job_list = Job.objects.filter(userID=current_user)
     info = CompanyInfo.objects.get(user=current_user)
-
     return render(request, 'Dashboard/dashboard.html', {'job_list': job_list, 'info': info})
 
 
