@@ -1,5 +1,6 @@
 from django.core.files.storage import FileSystemStorage
-from django.shortcuts import render
+
+from django.shortcuts import render, redirect
 from .models import EmployeeApplicants, JobRequirements, Job, Aptitude
 from Home.models import Big5result
 
@@ -47,8 +48,7 @@ def add_apply(request, job_id):
     if ques.exists():
         return render(request, 'Forms/aptitude_answerSheet.html', {'questions': ques, 'job_id': job_id})
     else:
-        jobs = JobRequirements.objects.order_by('-fromdate')[:9]
-        return render(request, 'Home/index.html', {'jobs': jobs})
+        return redirect('/Dashboard/Employee')
 
 
 def add_jobs(request):
