@@ -12,5 +12,5 @@ urlpatterns = [
     path('personality_test', views.personality_test, name='personality_test'),
     path('personality_score', views.personality_score, name='personality_score'),
     path('search_result', views.search, name='search'),
-    path('about', views.about, name='about'),
+    path('about', views.about, name='about')
 ]
