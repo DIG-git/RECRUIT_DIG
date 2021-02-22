@@ -3,7 +3,6 @@
 {% block content %}
 
 <div class="main container-fluid ">
-
     <div class="left col-sm-4" style="float:left; width: 360px;">
         <h6 class="p-2" style="background:#A9CCE3; color:#2F4F4F;">JOB CATEGORIES</h6>
         <div class="list-group">
@@ -31,7 +30,7 @@
         {% endif %}
         <div class="row">
             {% for job in jobs %}
-             {% if job.active %}
+            {% if job.active %}
                 <div class="col-sm-6 mt-3">
                 <div class="card c1">
                     <div class="overlay1"></div>
@@ -52,6 +51,7 @@
             {% endfor %}
         </div>
     </div>
+</div>
 
 </div>
 
