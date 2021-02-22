@@ -51,7 +51,7 @@
                 {% endif %}
             {% endif %}
             <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="{% url 'about' %}">About</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0 mr-5" method="POST" action="{% url 'search' %}">
