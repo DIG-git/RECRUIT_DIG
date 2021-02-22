@@ -175,11 +175,15 @@ def search(request):
     searched_job = []
     search = request.POST['search']
     job_list = JobRequirements.objects.filter(post__icontains=search)
+<<<<<<< HEAD
     for job in job_list:
         if job.active:
             searched_job.append(job)
     return render(request, 'Home/search_result.html', {'jobs': searched_job, 'search': search})
 
+=======
+    return render(request, 'Home/search_result.html', {'jobs': job_list, 'search': search})
+>>>>>>> rebase 2/10 conflicts resolved
 
 def about(request):
     return render(request, 'Home/about.html')
