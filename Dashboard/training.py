@@ -50,7 +50,7 @@ def train(fnames):
             # print(f'{ent.label_.upper():{30}} - {ent.text}')
             text = text + str(ent.text)
 
-        if len(text) <100:
+        if len(text) < 100:
             documents.append(d)
         else:
             documents.append(text)
@@ -101,6 +101,7 @@ def train(fnames):
         print(cosine)
 
     return similarity
+
 
 def train_desc(fnames):
     docs = []

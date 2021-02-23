@@ -4,6 +4,7 @@ from django.core.checks import messages
 from django.template.defaulttags import register
 
 from django.shortcuts import render, redirect
+
 from Apply.models import EmployeeApplicants, Job, JobRequirements, Similarity, Aptitude, Compatible
 from Home.models import Big5result
 from authentication.models import EmployeeInfo, CompanyInfo
@@ -35,6 +36,7 @@ def dashboard1(request):
         Big5resultlist = None
 
     employee_list = EmployeeApplicants.objects.filter(userID=current_user)
+
     for employee in employee_list:
         job_list.append(employee.jobID)
 
